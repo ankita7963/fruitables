@@ -1,0 +1,199 @@
+{
+  "category": [
+    {
+      "id": "67d1",
+      "name": "Fruite",
+      "description": "Apple, Banana, Orange, Mango, Grapes, Pineapple, Strawberry, Watermelon, Papaya, Peach, Pear, Plum, Cherry, Kiwi, Coconut, Pomegranate, Fig, Lemon, Lime, Avocado, and Guava"
+    },
+    {
+      "id": "9685",
+      "name": "Vagetables",
+      "description": "carrot, potato, beetroot, turnip, sweet potato, radish, ginger, and garlic. "
+    },
+    {
+      "id": "1d78",
+      "name": "Dry Fruite",
+      "description": "almonds, cashews, pistachios, raisins, dates, apricots, figs, and prunes."
+    },
+    {
+      "id": "6849",
+      "name": "cccccc",
+      "description": "ccc"
+    }
+  ],
+  "subCategory": [
+    {
+      "id": "3bef",
+      "categoryId": "67d1",
+      "name": "Apple",
+      "description": "Fruite-Apple"
+    },
+    {
+      "id": "6d17",
+      "categoryId": "67d1",
+      "name": "Banana",
+      "description": "Fruite-Banana"
+    },
+    {
+      "id": "ee5b",
+      "categoryId": "67d1",
+      "name": "Strawberry",
+      "description": "Fruite-Strawberry"
+    },
+    {
+      "id": "115d",
+      "categoryId": "67d1",
+      "name": "Papaya",
+      "description": "Fruite-Papaya"
+    },
+    {
+      "id": "d400",
+      "categoryId": "67d1",
+      "name": "Avocado",
+      "description": "Fruite-Avocado"
+    },
+    {
+      "id": "e4fb",
+      "categoryId": "9685",
+      "name": "Potato",
+      "description": "Vagetables-Potato"
+    },
+    {
+      "id": "1169",
+      "categoryId": "9685",
+      "name": "Turnip",
+      "description": "Vagetables-turnip"
+    },
+    {
+      "id": "42a5",
+      "categoryId": "9685",
+      "name": "Carrot",
+      "description": "Vagetables-carrot"
+    },
+    {
+      "id": "806a",
+      "categoryId": "9685",
+      "name": "Ginger",
+      "description": "Vagetables-ginger"
+    },
+    {
+      "id": "881a",
+      "categoryId": "1d78",
+      "name": "Almonds",
+      "description": "DryFruite-almonds"
+    },
+    {
+      "id": "f47b",
+      "categoryId": "1d78",
+      "name": "Dates",
+      "description": "DryFruite-dates"
+    },
+    {
+      "id": "1e19",
+      "categoryId": "1d78",
+      "name": "Prunes",
+      "description": "DryFruite-prunes"
+    },
+    {
+      "id": "1bdc",
+      "categoryId": "1d78",
+      "name": "Cashews",
+      "description": "DryFruite-cashews"
+    },
+    {
+      "id": "9b54",
+      "categoryId": "1d78",
+      "name": "Raisins",
+      "description": "DryFruite-raisins"
+    },
+    {
+      "id": "cd3c",
+      "categoryId": "6849",
+      "name": "xx",
+      "description": "xx"
+    }
+  ],
+  "product": [
+    {
+      "id": "9309",
+      "categoryId": "67d1",
+      "subcategoryId": "3bef",
+      "title": "Apple",
+      "description": "Farm-Fresh Apple.",
+      "price": 120,
+      "product_img": "APPLE.jpg"
+    },
+    {
+      "id": "eff3",
+      "categoryId": "67d1",
+      "subcategoryId": "6d17",
+      "title": "Banana",
+      "description": "Farm-Fresh Banana.",
+      "price": 80,
+      "product_img": "BNANA.jpg"
+    },
+    {
+      "id": "e45f",
+      "categoryId": "67d1",
+      "subcategoryId": "ee5b",
+      "title": "Strawberry",
+      "description": "Farm-Fresh Strawberry.",
+      "price": 240,
+      "product_img": "Berries Strawberries.jpg"
+    },
+    {
+      "id": "fe64",
+      "categoryId": "67d1",
+      "subcategoryId": "115d",
+      "title": "Papaya",
+      "description": "Farm-Fresh Papaya.",
+      "price": 89,
+      "product_img": "papaya.jpg"
+    },
+    {
+      "id": "0c2d",
+      "categoryId": "67d1",
+      "subcategoryId": "d400",
+      "title": "Avocado",
+      "description": "Farm-Fresh Avocado.",
+      "price": 256,
+      "product_img": "avocado.jpg"
+    },
+    {
+      "id": "19e4",
+      "categoryId": "9685",
+      "subcategoryId": "1169",
+      "title": "Turnip",
+      "description": "Farm-Fresh Turnip.",
+      "price": 60,
+      "product_img": "turnip.jpg"
+    },
+    {
+      "id": "d5b4",
+      "categoryId": "9685",
+      "subcategoryId": "e4fb",
+      "title": "Potato",
+      "description": "Farm-Fresh Potato.",
+      "price": 70,
+      "product_img": "patato.jpg"
+    },
+    {
+      "id": "0f90",
+      "categoryId": "9685",
+      "subcategoryId": "42a5",
+      "title": "Carrot",
+      "description": "Farm-Fresh Carrot",
+      "price": 30,
+      "product_img": "carrot.jpg"
+    },
+    {
+      "id": "d2db",
+      "categoryId": "6849",
+      "subcategoryId": "cd3c",
+      "title": "xx",
+      "description": "xx",
+      "price": 56,
+      "product_img": "carrot.jpg"
+    }
+  ]
+}
