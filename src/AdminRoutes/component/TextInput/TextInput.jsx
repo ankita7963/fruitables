@@ -2,29 +2,25 @@ import { FormControl, TextField } from '@mui/material';
 import { useField } from 'formik';
 import React from 'react';
 
-function TextInput({ id, name, type="text", label, onChange, onBlur, value, error,  margin="dense", variant = "standard", helperText }) {
-    const [field, meta] = useField(props)
-    console.log(props, field, meta);
-    
+function TextInput({ id, label, type = "text", margin = "dense", variant = "standard", ...props }) {
 
+    const [field, meta] = useField(props);
+    console.log(props, field, meta);
 
     return (
-        <FormControl>
+       
             < TextField
+                {...props}   //name
+                {...field}   //onChange,onBlur,value
+                error={meta.touched && meta.error}
+                helperText={meta.touched && meta.error ? meta.error : ''}
+                fullWidth
                 margin={margin}
                 id={id}
-                name={name}
                 label={label}
                 type={type}
-                fullWidth
-                onChange={onChange}
-                onBlur={onBlur}
-                value={value}
-                error={error}
-                helperText={helperText}
                 variant={variant}
             />
-        </FormControl>
     );
 }
 

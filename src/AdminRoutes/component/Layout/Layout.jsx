@@ -18,10 +18,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Label } from '@mui/icons-material';
+import { Label, Reviews } from '@mui/icons-material';
 import CategoryIcon from '@mui/icons-material/Category';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import ReviewsIcon from '@mui/icons-material/Reviews';
 import CountertopsIcon from '@mui/icons-material/Countertops';
 import { NavLink } from 'react-router-dom';
 
@@ -121,6 +122,7 @@ export default function Layout({ children }) {
         { Label: 'Category', icon: <CategoryIcon />, to: '/admin/Category' },
         { Label: 'SubCategory', icon: <FormatListBulletedIcon />, to: '/admin/SubCategory' },
         { Label: 'Product', icon: <ProductionQuantityLimitsIcon />, to: '/admin/Product' },
+        { Label: 'Review', icon: <Reviews />, to: '/admin/Review' },
         { Label: 'counter', icon: <CountertopsIcon />, to: '/admin/Counter' }
     ];
 

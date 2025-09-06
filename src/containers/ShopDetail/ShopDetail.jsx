@@ -1,14 +1,110 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { getAllProduct } from '../../redux/Slice/product.slice';
 import { getAllCategory } from '../../redux/Slice/category.slice';
+import { addToCart } from '../../redux/Slice/cart.slice';
+import { useFormik } from 'formik';
+import { object, string } from 'yup';
+import { Rating, Stack } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
+import { addReviewData, getAllReviewData } from '../../redux/Slice/review.slice';
+import { addtoCart1 } from '../../redux/Slice/cart1.slice';
 
 function ShopDetail(props) {
+
     const { id } = useParams();
     console.log(id);
+
+    // --- Leave a Reply form code in formik ---
+    const [reviewList, setReviewList] = useState([]);
+
+    let proReviewSchema = object({
+        name: string().required("Please Enter Name"),
+        email: string().email().required("Please Enter Email"),
+        review: string().required("Please Enter Product Review"),
+        rate: string().required("Please Selet Rate")
+    });
+
+    const generateRandomString = () => {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < 4; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+    }
+
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            email: '',
+            review: '',
+            rate: ''
+        },
+        validationSchema: proReviewSchema,
+        onSubmit: async (values, { resetForm }) => {
+            console.log(values);
+            // setReviewList(values);   // Save data to display
+
+            // setReviewList(prevList => {
+            //     console.log("Previous list:", prevList);
+
+            //     const newReview = {
+            //         shopDetailId: fData?.id,
+            //         id: prevList.length + 1,
+            //         name: values.name,
+            //         email: values.email,
+            //         review: values.review,
+            //         rate: values.rate
+            //     };
+
+
+            //     return [...prevList, newReview];
+            // });
+
+            const newReview = {
+                id: generateRandomString(),
+                pid: id,
+                product_name: fData?.title,
+                name: values.name,
+                email: values.email,
+                review: values.review,
+                rate: values.rate,
+                status: false
+            };
+            dispatch(addReviewData(newReview));
+            resetForm();     // Reset form
+        }
+
+
+    });
+    const { handleSubmit, handleChange, handleBlur, values, touched, errors, setValues, setFieldValue } = formik;
+    console.log(errors);
+    // --- Leave a Reply form code in formik end ---
+
+
+    // -------- Fetching Data --------
+    const getData = async () => {
+        try {
+            dispatch(getAllReviewData());
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+
+    const review = useSelector(state => state.review);
+    console.log(review.review);
+
+
     const dispatch = useDispatch();
     const [category, setCategory] = React.useState(null);
+    const [count, setCount] = useState(1);
 
 
 
@@ -24,11 +120,35 @@ function ShopDetail(props) {
 
     const fData = prodata.product.find((v) => v.id === id);
     console.log(fData);
+    const cart = useSelector(state => state.cart)
+    console.log(cart);
+
+    const handleDec = () => {
+        if (count > 1) {
+            setCount(count - 1)
+        }
+    }
+
+    const handleInc = () => {
+        if (count < 10) {
+            setCount(count + 1)
+        }
+    }
+
+    const handleCounter = (val) => {
+        if (val >= 1 && val <= 10) {
+            setCount(val)
+        }
+    }
 
 
+    const reviewTable = review.review.filter(v => v.pid === fData?.id && v.status);
+    console.log(reviewTable);
 
     return (
+
         <div>
+
 
             {'{'} {/* Single Page Header start */}
             <div className="container-fluid page-header py-5">
@@ -64,9 +184,9 @@ function ShopDetail(props) {
 
                                 {/* shop -> shopdetails -> product image -> details*/}
                                 <div className="col-lg-6">
-                                    <h4 className="fw-bold mb-3">{fData.title}</h4>
-                                    <p className="mb-3">Category{fData.description}</p>
-                                    <h5 className="fw-bold mb-3">${fData.price} / kg</h5>
+                                    <h4 className="fw-bold mb-3">{fData?.title}</h4>
+                                    <p className="mb-3">{fData?.description}</p>
+                                    <h5 className="fw-bold mb-3">${fData?.price} / kg</h5>
                                     <div className="d-flex mb-4">
                                         <i className="fa fa-star text-secondary" />
                                         <i className="fa fa-star text-secondary" />
@@ -74,22 +194,56 @@ function ShopDetail(props) {
                                         <i className="fa fa-star text-secondary" />
                                         <i className="fa fa-star" />
                                     </div>
-                                    <p className="mb-4">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.</p>
-                                    <p className="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p>
+                                    <p className="mb-4">
+                                        The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.
+                                    </p>
+                                    <p className="mb-4">
+                                        Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish
+                                    </p>
+
+                                    {/* add & delete qty button */}
                                     <div className="input-group quantity mb-5" style={{ width: 100 }}>
                                         <div className="input-group-btn">
-                                            <button className="btn btn-sm btn-minus rounded-circle bg-light border">
+                                            <button
+                                                onClick={() => handleDec()}
+                                                disabled={count === 1}
+                                                className="btn btn-sm btn-minus rounded-circle bg-light border">
                                                 <i className="fa fa-minus" />
                                             </button>
                                         </div>
-                                        <input type="text" className="form-control form-control-sm text-center border-0" defaultValue={1} />
+
+                                        <input
+                                            value={count}
+                                            onChange={(event) => handleCounter(parseInt(event.target.value))}
+                                            type="text"
+                                            className="form-control form-control-sm text-center border-0"
+                                            defaultValue={1}
+                                        />
+
                                         <div className="input-group-btn">
-                                            <button className="btn btn-sm btn-plus rounded-circle bg-light border">
+                                            <button
+                                                onClick={() => handleInc()}
+                                                disabled={count === 10}
+                                                className="btn btn-sm btn-plus rounded-circle bg-light border">
                                                 <i className="fa fa-plus" />
                                             </button>
                                         </div>
                                     </div>
-                                    <a href="#" className="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
+
+                                    {/*  Add to cart &    add & delete qty {} */}
+                                    <NavLink
+                                        onClick={() => dispatch(
+                                            addtoCart1({
+                                                userid: 'ghjghj',
+                                                cart: { id: fData?.id, qty: count }
+                                            })
+                                        )}
+                                        to={'/cart'}
+                                        href="#"
+                                        className="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">
+                                        <i className="fa fa-shopping-bag me-2 text-primary" />
+                                        Add to cart
+                                    </NavLink>
                                 </div>
 
                                 <div className="col-lg-12">
@@ -150,45 +304,39 @@ function ShopDetail(props) {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                2
                                             </div>
                                         </div>
+
+
+
+                                        {/* ------------------------------------------------------------------Review---------------------------------------------------------------------------------- */}
                                         <div className="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
-                                            <div className="d-flex">
-                                                <img src="img/avatar.jpg" className="img-fluid rounded-circle p-3" style={{ width: 100, height: 100 }} alt />
-                                                <div className>
-                                                    <p className="mb-2" style={{ fontSize: 14 }}>April 12, 2024</p>
-                                                    <div className="d-flex justify-content-between">
-                                                        <h5>Jason Smith</h5>
-                                                        <div className="d-flex mb-3">
-                                                            <i className="fa fa-star text-secondary" />
-                                                            <i className="fa fa-star text-secondary" />
-                                                            <i className="fa fa-star text-secondary" />
-                                                            <i className="fa fa-star text-secondary" />
-                                                            <i className="fa fa-star" />
+                                            {reviewTable.map((v) =>
+                                                <div className="d-flex">
+                                                    <img
+                                                        src={`../public/img/categoryimg/${v.product_img}`}
+                                                        className="img-fluid rounded-circle p-3"
+                                                        style={{ width: 100, height: 100 }} alt
+                                                    />
+                                                    <div className>
+                                                        <div className="d-flex justify-content-between">
+                                                            <h5>{v.name}</h5>
+                                                            <div className="d-flex mb-3"> {v.rate}</div>
+                                                            <Rating name="read-only" value={v.rate} readOnly />
+
+                                                            {/* <div className="d-flex mb-3">
+                                                                <i className="fa fa-star text-secondary" />
+                                                                <i className="fa fa-star text-secondary" />
+                                                                <i className="fa fa-star text-secondary" />
+                                                                <i className="fa fa-star" />
+                                                                <i className="fa fa-star" />
+                                                            </div> */}
                                                         </div>
+                                                        <p>{v.review}</p>
                                                     </div>
-                                                    <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic
-                                                        words etc. Susp endisse ultricies nisi vel quam suscipit </p>
                                                 </div>
-                                            </div>
-                                            <div className="d-flex">
-                                                <img src="img/avatar.jpg" className="img-fluid rounded-circle p-3" style={{ width: 100, height: 100 }} alt />
-                                                <div className>
-                                                    <p className="mb-2" style={{ fontSize: 14 }}>April 12, 2024</p>
-                                                    <div className="d-flex justify-content-between">
-                                                        <h5>Sam Peters</h5>
-                                                        <div className="d-flex mb-3">
-                                                            <i className="fa fa-star text-secondary" />
-                                                            <i className="fa fa-star text-secondary" />
-                                                            <i className="fa fa-star text-secondary" />
-                                                            <i className="fa fa-star" />
-                                                            <i className="fa fa-star" />
-                                                        </div>
-                                                    </div>
-                                                    <p className="text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic
-                                                        words etc. Susp endisse ultricies nisi vel quam suscipit </p>
-                                                </div>
-                                            </div>
+                                            )}
                                         </div>
                                         <div className="tab-pane" id="nav-vision" role="tabpanel">
                                             <p className="text-dark">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
@@ -198,41 +346,119 @@ function ShopDetail(props) {
                                         </div>
                                     </div>
                                 </div>
-                                <form action="#">
+
+                                {/* ------------------------------------------------------------------Leave a Reply Form---------------------------------------------------------------------------------- */}
+                                <form onSubmit={handleSubmit} >
                                     <h4 className="mb-5 fw-bold">Leave a Reply</h4>
                                     <div className="row g-4">
                                         <div className="col-lg-6">
                                             <div className="border-bottom rounded">
-                                                <input type="text" className="form-control border-0 me-4" placeholder="Yur Name *" />
+                                                <input
+                                                    id="name"
+                                                    name="name"
+                                                    type="text"
+                                                    placeholder="Yur Name *"
+                                                    className="form-control border-0 me-4"
+                                                    style={{ cursor: 'pointer' }}
+                                                    value={values.name}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
                                             </div>
+                                            <span style={{ color: 'red' }}>
+                                                {errors.name && touched.name ? errors.name : ''}
+                                            </span>
                                         </div>
                                         <div className="col-lg-6">
                                             <div className="border-bottom rounded">
-                                                <input type="email" className="form-control border-0" placeholder="Your Email *" />
+                                                <input
+                                                    id="email"
+                                                    name="email"
+                                                    type="text"
+                                                    placeholder="Your Email *"
+                                                    className="form-control border-0"
+                                                    style={{ cursor: 'pointer' }}
+                                                    value={values.email}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
                                             </div>
+                                            <span style={{ color: 'red' }}>
+                                                {errors.email && touched.email ? errors.email : ''}
+                                            </span>
                                         </div>
                                         <div className="col-lg-12">
                                             <div className="border-bottom rounded my-4">
-                                                <textarea name id className="form-control border-0" cols={30} rows={8} placeholder="Your Review *" spellCheck="false" defaultValue={""} />
+                                                <textarea
+                                                    id="review"
+                                                    name="review"
+                                                    type="text"
+                                                    placeholder="Your Review *"
+                                                    className="form-control border-0"
+                                                    spellCheck="false"
+                                                    defaultValue={""}
+                                                    cols={30} rows={8}
+                                                    style={{ cursor: 'pointer' }}
+                                                    value={values.review}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
                                             </div>
+                                            <span style={{ color: 'red' }}>
+                                                {errors.review && touched.review ? errors.review : ''}
+                                            </span>
                                         </div>
                                         <div className="col-lg-12">
                                             <div className="d-flex justify-content-between py-3 mb-5">
                                                 <div className="d-flex align-items-center">
                                                     <p className="mb-0 me-3">Please rate:</p>
-                                                    <div className="d-flex align-items-center" style={{ fontSize: 12 }}>
-                                                        <i className="fa fa-star text-muted" />
-                                                        <i className="fa fa-star" />
-                                                        <i className="fa fa-star" />
-                                                        <i className="fa fa-star" />
-                                                        <i className="fa fa-star" />
-                                                    </div>
+                                                    <Stack spacing={1}>
+                                                        <Rating
+                                                            id="rate"
+                                                            name="rate"
+                                                            precision={0.5}
+                                                            defaultValue={2.5}
+                                                            style={{ cursor: 'pointer' }}
+                                                            value={values.rate}
+                                                            onChange={handleChange}
+                                                            onBlur={handleBlur}
+                                                        />
+                                                    </Stack>
+                                                    <span style={{ color: 'red' }}>
+                                                        {errors.rate && touched.rate ? errors.rate : ''}
+                                                    </span>
                                                 </div>
-                                                <a href="#" className="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</a>
+                                                <button
+                                                    type="submit"
+                                                    className="btn border border-secondary text-primary rounded-pill px-4 py-3"
+                                                >
+                                                    Post Comment
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
+
                                 </form>
+                                {/* {review.review.length > 0 && (
+                                    <>
+                                        {console.log("review list array:", review.review)}
+
+                                        <div style={{ height: 400, width: '100%' }}>
+                                            <h3 className="mb-3">Leave a Reply Review Report Data:</h3>
+                                            <DataGrid
+                                                rows={review?.review?.filter(item => item.pid == fData?.id)}
+                                                columns={columns}
+                                                nitialState={{ pagination: { paginationModel } }}
+                                                pageSize={5}
+                                                rowsPerPageOptions={[5]}
+                                                checkboxSelection
+                                            />
+                                        </div>
+                                    </>
+                                )} */}
+
+                                {/* ----------------------------------------------------------------------------------------------------------------------------------------------------*/}
+
                             </div>
                         </div>
                         <div className="col-lg-4 col-xl-3">

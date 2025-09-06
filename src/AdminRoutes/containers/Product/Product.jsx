@@ -12,15 +12,20 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, FormControl, IconButton, InputLabel, MenuItem, Select } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
-import { mixed, object, string } from 'yup';
-import { useFormik } from 'formik';
+import { array, boolean, mixed, object, string } from 'yup';
+import { Form, Formik, useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory } from '../../../redux/Slice/category.slice';
 import { getAllSubCategory } from '../../../redux/Slice/subcategory.slice';
 import { addProductData, deleteProduct, getAllProduct, productSlice, updateProduct } from '../../../redux/Slice/product.slice';
 import TextInput from '../../component/TextInput/TextInput';
 import SelectInput from '../../component/SelectInput/SelectInput';
-// import ButtonInput from '../../component/ButtonInput/ButtonInput';
+import RadioBtn from '../../component/RadioBtn/RadioBtn';
+import { CheckBox } from '@mui/icons-material';
+import CheckboxGroup from '../../component/Checkbox/CheckboxGroup';
+import Switchh from '../../component/Switch/Switchh';
+import FileUploadd from '../../component/FileUpload/FileUploadd';
+import ButtonInput from '../../component/ButtonInput/ButtonInput';
 
 
 
@@ -35,7 +40,6 @@ function Product(props) {
     const [image, setImage] = React.useState(null);
     const [imageName, setImageName] = React.useState('');
     const [preview, setPreview] = React.useState(null);
-
     const dispatch = useDispatch();
 
 
@@ -71,28 +75,32 @@ function Product(props) {
         subcategoryId: string().required("Please Select SubCategory"),
         title: string().required("Please Enter Title"),
         description: string().required("Please Enter Product Description"),
+        type: string().required("Please Select Product Type"),
+        hobby: array().min(2, "Please Select Minimum 2 hobby"),
+        active: boolean().oneOf([true], "Must be Active"),
+        product_img: mixed().required("Please Select Image"),
         price: string().required("Please Selet Price"),
-        product_img: mixed().required("Please Select Filed")
-            .test("profiled", "Please Select png, jpg & jpeg Filed Upload", function (val) {
-                console.log(val);
+        // product_img: mixed().required("Please Select Filed")
+        //     .test("profiled", "Please Select png, jpg & jpeg Filed Upload", function (val) {
+        //         console.log(val);
 
-                let filetype = val.type.toLowerCase();
-                console.log(filetype);
+        //         let filetype = val.type.toLowerCase();
+        //         console.log(filetype);
 
-                if (filetype === "image/png" || filetype === "image/jpg" || filetype === "image/jpeg") {
-                    return true;
-                } else {
-                    return false;
-                }
-            })
-            .test("profiled", "Please Upload 2mb filed", function (val) {
-                console.log(val.size);
-                if (val.size <= 2 * 1024 * 1024) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }),
+        //         if (filetype === "image/png" || filetype === "image/jpg" || filetype === "image/jpeg") {
+        //             return true;
+        //         } else {
+        //             return false;
+        //         }
+        //     })
+        //     .test("profiled", "Please Upload 2mb filed", function (val) {
+        //         console.log(val.size);
+        //         if (val.size <= 2 * 1024 * 1024) {
+        //             return true;
+        //         } else {
+        //             return false;
+        //         }
+        //     }),
     });
 
 
@@ -103,8 +111,12 @@ function Product(props) {
             subcategoryId: '',
             title: '',
             description: '',
+            type: '',
+            hobby: [],
+            active: true,
+            product_img: null,
             price: '',
-            product_img: null
+            // product_img: null
         },
         validationSchema: productSchema,
         enableReinitialize: true,
@@ -125,20 +137,31 @@ function Product(props) {
 
     // DataGrid columns
     const columns = [
+        // {
+        //     field: 'image',
+        //     headerName: 'Image',
+        //     width: 100,
+        //     renderCell: (params) => (
+        //         <Box
+        //             sx={{ width: 60, height: 60, display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', borderRadius: 1, }}
+        //         >
+        //             <img
+        //                 src={`../public/img/categoryimg/${params.row.product_img}`}
+        //                 alt="product"
+        //                 style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+        //             />
+        //         </Box>
+        //     )
+        // },
         {
-            field: 'image',
-            headerName: 'Image',
-            width: 100,
+            field: 'product_img',
+            width: 200,
             renderCell: (params) => (
-                <Box
-                    sx={{ width: 60, height: 60, display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', borderRadius: 1, }}
-                >
-                    <img
-                        src={`../public/img/categoryimg/${params.row.product_img}`}
-                        alt="product"
-                        style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                    />
-                </Box>
+                <img
+                    src={`../public/img/categoryimg/${params.row.product_img}`}
+                    // alt="product"
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
             )
         },
         {
@@ -177,6 +200,7 @@ function Product(props) {
                 </>
             ),
         },
+        
 
     ];
     const paginationModel = { page: 0, pageSize: 5 };
@@ -218,22 +242,22 @@ function Product(props) {
 
             <>
 
-             <Box sx={{
+                {/* <Box sx={{
                     display: 'flex',
                     justifyContent: 'flex-end'
                 }}>
                     <Button variant="outlined" onClick={handleClickOpen}>
-                       <span>  Add SubCategory</span>
+                        <span>  Add SubCategory</span>
                     </Button>
-                </Box>
+                </Box> */}
 
 
-                {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <ButtonInput
                         onClick={handleClickOpen}
                         title="All Product"
                     />
-                </Box> */}
+                </Box>
 
 
                 {/* -------- table data list formate -------- */}
@@ -250,21 +274,50 @@ function Product(props) {
                     <DialogTitle>Product</DialogTitle>
                     <DialogContent sx={{ paddingBottom: 0 }}>
 
-                        <form onSubmit={handleSubmit}>
+                        <Formik
+                            initialValues={{
+                                categoryId: '',
+                                subcategoryId: '',
+                                title: '',
+                                description: '',
+                                type: '',
+                                hobby: [],
+                                active: true,
+                                product_img: null,
+                                price: '',
+                                // product_img: null
+                            }}
+                            validationSchema={productSchema}
+                            enableReinitialize={true}
+                            onSubmit={
+                                (values, { resetForm }) => {
+                                    console.log({ ...values, product_img: values.product_img.name });
+                                    if (update === null) {
+                                        dispatch(addProductData({ ...values, product_img: values.product_img.name }));
+                                    } else {
+                                        dispatch(updateProduct({ ...values, product_img: values.product_img.name }));
+                                    }
+                                    resetForm(); // Clear fields
+                                    handleClose(); // Close dialog box mate
+                                }
+                            }
+                        >
+                            {({ values }) => (
+                                <Form>
 
-                            <SelectInput
-                                label="Category"
-                                id="categoryId"
-                                name="categoryId"
-                                value={values.categoryId}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                data={cat.category}
-                                error={touched.categoryId && errors.categoryId}
-                                helperText={touched.categoryId && errors.categoryId ? errors.categoryId : ''}
-                            />
+                                    <SelectInput
+                                        label="Category"
+                                        id="categoryId"
+                                        name="categoryId"
+                                        data={cat.category}
+                                    // value={values.categoryId}
+                                    // onChange={handleChange}
+                                    // onBlur={handleBlur}
+                                    // error={touched.categoryId && errors.categoryId}
+                                    // helperText={touched.categoryId && errors.categoryId ? errors.categoryId : ''}
+                                    />
 
-                            {/* <FormControl fullWidth margin="dense"
+                                    {/* <FormControl fullWidth margin="dense"
                                 variant="standard"
                                 error={touched.subcategoryId && Boolean(errors.subcategoryId)}
                             >
@@ -288,95 +341,115 @@ function Product(props) {
                                 )}
                             </FormControl> */}
 
-                            <SelectInput
-                                label="SubCategory"
-                                id="subcategoryId"
-                                name="subcategoryId"
-                                value={values.subcategoryId}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                data={subcat.subCategory?.filter(sub => sub.categoryId === values.categoryId)}
-                                error={touched.subcategoryId && errors.subcategoryId}
-                                helperText={touched.subcategoryId && errors.subcategoryId ? errors.subcategoryId : ''}
-                            />
+                                    <SelectInput
+                                        label="SubCategory"
+                                        id="subcategoryId"
+                                        name="subcategoryId"
+                                        data={subcat.subCategory?.filter(sub => sub.categoryId === values.categoryId)}
+                                    // value={values.subcategoryId}
+                                    // onChange={handleChange}
+                                    // onBlur={handleBlur}
+                                    // error={touched.subcategoryId && errors.subcategoryId}
+                                    // helperText={touched.subcategoryId && errors.subcategoryId ? errors.subcategoryId : ''}
+                                    />
 
-                            <TextInput
-                                margin="dense"
-                                id="title"
-                                name="title"
-                                label="Title"
-                                type="text"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.title}
-                                error={touched.title && errors.title}
-                                helperText={touched.title && errors.title ? errors.title : ''}
-                            />
+                                    <TextInput
+                                        id="title"
+                                        name="title"
+                                        label="Title"
+                                    />
 
-                            <TextInput
-                                id="description"
-                                name="description"
-                                label="Description"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.description}
-                                error={touched.description && errors.description}
-                                helperText={touched.description && errors.description ? errors.description : ''}
-                            />
+                                    <TextInput
+                                        id="description"
+                                        name="description"
+                                        label="Description"
+                                    />
 
-                            <TextInput
-                                id="price"
-                                name="price"
-                                label="Price"
-                                type="number"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.price}
-                                error={touched.price && errors.price}
-                                helperText={touched.price && errors.price ? errors.price : ''}
-                            />
+                                    <RadioBtn
+                                        id="type"
+                                        name="type"
+                                        label="Type"
+                                        data={[
+                                            { value: 'organic', label: 'Organic' },
+                                            { value: 'non-organic', label: 'Non-Organic' }
+                                        ]}
+                                    />
 
-                            <FormControl fullWidth margin="dense">
-                                <InputLabel shrink>Product Image</InputLabel>
-                                <input
-                                    accept="image/png, image/jpeg, image/jpg"
-                                    name="product_img"
-                                    type="file"
-                                    onChange={(e) => setFieldValue("product_img", e.target.files[0])}
-                                    onBlur={handleBlur}
-                                    style={{ marginTop: 8 }}
+                                    <CheckboxGroup
+                                        id="hobby"
+                                        name="hobby"
+                                        label="Hobby"
+                                        data={[
+                                            { value: 'cricket', label: 'Cricket' },
+                                            { value: 'music', label: 'Music' },
+                                            { value: 'coding', label: 'Coding' }
+                                        ]}
+                                    />
 
-                                />
-                                {
-                                    values.product_img &&
+                                    <Switchh
+                                        id="active"
+                                        name="active"
+                                        label="Active"
+                                    />
 
-                                    <Box
-                                        sx={{
-                                            width: 100, height: 100, overflow: 'hidden', mt: 1, borderRadius: 2,
-                                            display: 'flex', justifyContent: 'center', alignItems: 'center',
-                                        }}
-                                    >
-                                        <img
-                                            src={typeof values.product_img === 'string'
-                                                ? "../public/img/categoryimg/" + values.product_img
-                                                : URL.createObjectURL(values.product_img)
-                                            }
-                                            alt="Preview"
-                                            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                    <FileUploadd
+                                        id="product_img"
+                                        name="product_img"
+                                        label="Image"
+                                    />
+
+                                    <TextInput
+                                        id="price"
+                                        name="price"
+                                        label="Price"
+                                        type="number"
+                                    />
+
+                                    {/* <FormControl fullWidth margin="dense">
+                                        <InputLabel shrink>Product Image</InputLabel>
+                                        <input
+                                            accept="image/png, image/jpeg, image/jpg"
+                                            name="product_img"
+                                            type="file"
+                                            onChange={(e) => setFieldValue("product_img", e.target.files[0])}
+                                            onBlur={handleBlur}
+                                            style={{ marginTop: 8 }}
+
                                         />
-                                    </Box>
+                                        {
+                                            values.product_img &&
 
-                                }
-                                {touched.product_img && errors.product_img && (
-                                    <p style={{ color: 'red', fontSize: '12px' }}>{errors.product_img}</p>
-                                )}
-                            </FormControl>
+                                            <Box
+                                                sx={{
+                                                    width: 100, height: 100, overflow: 'hidden', mt: 1, borderRadius: 2,
+                                                    display: 'flex', justifyContent: 'center', alignItems: 'center',
+                                                }}
+                                            >
+                                                <img
+                                                    src={typeof values.product_img === 'string'
+                                                        ? "../public/img/categoryimg/" + values.product_img
+                                                        : URL.createObjectURL(values.product_img)
+                                                    }
+                                                    alt="Preview"
+                                                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                                />
+                                            </Box>
 
-                            <DialogActions>
-                                <Button type="submit">Submit</Button>
-                                <Button onClick={handleClose}>Cancel</Button>
-                            </DialogActions>
-                        </form>
+                                        }
+                                        {touched.product_img && errors.product_img && (
+                                            <p style={{ color: 'red', fontSize: '12px' }}>{errors.product_img}</p>
+                                        )}
+                                    </FormControl> */}
+
+                                    <DialogActions>
+                                        <Button type="submit">Submit</Button>
+                                        <Button onClick={handleClose}>Cancel</Button>
+                                    </DialogActions>
+                                </Form>
+                            )}
+
+
+                        </Formik>
 
                     </DialogContent>
                 </Dialog>

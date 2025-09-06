@@ -10,7 +10,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Box, InputLabel, MenuItem, Select } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { object, string } from 'yup';
-import { useFormik } from 'formik';
+import { Form, Formik, useFormik } from 'formik';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
@@ -271,9 +271,31 @@ function SubCategory(props) {
                     <DialogTitle>SubCategory</DialogTitle>
                     <DialogContent sx={{ paddingBottom: 0 }}>
 
-                        <form onSubmit={handleSubmit}>
-                            {/*--- manually Select button handle code ---*/}
-                            {/* <FormControl 
+                        <Formik
+                            initialValues={{
+                                categoryId: '',
+                                name: '',
+                                description: '',
+                            }}
+                            validationSchema={categorySchema}
+                            enableReinitialize={true}
+                            onSubmit={(values, { resetForm }) => {
+                                console.log(values);
+
+                                if (update === null) {
+                                    handleCategory(values);
+                                } else {
+                                    updateCategorydata(values);
+                                }
+                                resetForm(); // Clear fields
+                                handleClose(); // Close dialog box mate
+                            }}
+                        >
+
+                            <Form>
+
+                                {/*--- manually Select button handle code ---*/}
+                                {/* <FormControl 
                             fullWidth 
                             margin="dense"
                                 variant="standard"
@@ -298,47 +320,34 @@ function SubCategory(props) {
                                     <p style={{ color: 'red', fontSize: '12px' }}>{errors.categoryId}</p>
                                 )}
                             </FormControl> */}
-                          
-                            <SelectInput
-                                label="Category"
-                                id="categoryId"
-                                name="categoryId"
-                                value={values.categoryId}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                data={catData}
-                                error={touched.categoryId && errors.categoryId}
-                                helperText={touched.categoryId && errors.categoryId ? errors.categoryId : ''}
-                            /> 
-                            
-                            <TextInput
-                                required
-                                id="name"
-                                name="name"
-                                label="Name"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.name}
-                                error={touched.name && errors.name}
-                                helperText={touched.name && errors.name ? errors.name : ''}
-                            />
 
-                            <TextInput
-                                required
-                                id="description"
-                                name="description"
-                                label="Description"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.description}
-                                error={touched.description && errors.description}
-                                helperText={touched.description && errors.description ? errors.description : ''}
-                            />
-                            <DialogActions>
-                                <Button type="submit">Submit</Button>
-                                <Button onClick={handleClose}>Cancel</Button>
-                            </DialogActions>
-                        </form>
+                                <SelectInput
+                                    label="Category"
+                                    id="categoryId"
+                                    name="categoryId"
+                                    data={catData}
+                                    // value={values.categoryId}
+                                />
+
+                                <TextInput
+                                    id="name"
+                                    name="name"
+                                    label="Name"
+                                />
+
+                                <TextInput
+                                    id="description"
+                                    name="description"
+                                    label="Description"
+                                />
+                                <DialogActions>
+                                    <Button type="submit">Submit</Button>
+                                    <Button onClick={handleClose}>Cancel</Button>
+                                </DialogActions>
+                            </Form>
+
+                        </Formik>
+
                     </DialogContent>
                 </Dialog>
             </>  

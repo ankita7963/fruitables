@@ -1,6 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProduct } from '../../redux/Slice/product.slice';
+import { useParams } from 'react-router-dom';
+import Product from '../../AdminRoutes/containers/Product/Product';
+import { decrementQty, incremetQty, removeQty, upDateQty } from '../../redux/Slice/cart.slice';
+import reducer from '../../redux/Slice/category.slice';
+import { getCart, incremetQty1 } from '../../redux/Slice/cart1.slice';
 
 function Cart(props) {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // dispatch(getAllProduct());
+        dispatch(getCart('ghjghj'))
+    }, []);
+
+    // const prodata = useSelector(state => state.product);  //redux store na product slice mathi data aave.
+    // console.log(prodata.product);
+
+    const cartData = useSelector(state => state.cart1); // access the cart array
+
+
+    const producData = useSelector(state => state.product);
+    console.log(cartData, producData);
+
+    const fData = cartData.cart?.cart?.map((v) => {
+
+        const product = producData?.product?.find((v1) => v1.id == v.id);
+        console.log(product);
+
+        console.log({ ...Product, qty: v.qty });
+
+        return { ...product, qty: v.qty };
+
+    })
+    // const fData = cartData.cart?.map((v) => {
+    //     const product = producData.find((p) => p.id === v.id);
+    //     return { ...product, qty: v.qty };
+    // });
+
+    console.log(fData);
+
+
+
+
     return (
         <div>
             {/* Single Page Header start */}
@@ -29,114 +73,77 @@ function Cart(props) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">
-                                        <div className="d-flex align-items-center">
-                                            <img src="img/vegetable-item-3.png" className="img-fluid me-5 rounded-circle" style={{ width: 80, height: 80 }} alt />
-                                        </div>
-                                    </th>
-                                    <td>
-                                        <p className="mb-0 mt-4">Big Banana</p>
-                                    </td>
-                                    <td>
-                                        <p className="mb-0 mt-4">2.99 $</p>
-                                    </td>
-                                    <td>
-                                        <div className="input-group quantity mt-4" style={{ width: 100 }}>
-                                            <div className="input-group-btn">
-                                                <button className="btn btn-sm btn-minus rounded-circle bg-light border">
-                                                    <i className="fa fa-minus" />
-                                                </button>
+
+                                {fData?.map((v) => (
+                                    <tr>
+                                        <th scope="row">
+                                            <div className="d-flex align-items-center">
+                                                {/* <img
+                                                src="img/vegetable-item-3.png"
+                                                className="img-fluid me-5 rounded-circle"
+                                                style={{ width: 80, height: 80 }} alt
+                                            /> */}
+                                                <img
+                                                    src={`../public/img/categoryimg/${v.product_img}`}
+                                                    className="img-fluid me-5 "
+                                                    style={{ width: 80, height: 80 }}
+                                                    alt={v.title}
+                                                />
                                             </div>
-                                            <input type="text" className="form-control form-control-sm text-center border-0" defaultValue={1} />
-                                            <div className="input-group-btn">
-                                                <button className="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                    <i className="fa fa-plus" />
-                                                </button>
+                                        </th>
+                                        <td>
+                                            {/* <p className="mb-0 mt-4">Big Banana</p> 
+                                        {prodata.product.map((v) => (
+                                            <p key={v.id} className="mb-0 mt-4">{v.title}</p>
+                                        ))}*/}
+                                            <p className="mb-0 mt-4">{v.title}</p>
+                                        </td>
+                                        <td>
+                                            {/* <p className="mb-0 mt-4">2.99 $</p> 
+                                        {prodata.product.map((v) => (
+                                            <p key={v.id} className="mb-0 mt-4">{v.price} $</p>
+                                        ))} */}
+                                            <p className="mb-0 mt-4">{v.price} $</p>
+                                        </td>
+                                        <td>
+                                            <div className="input-group quantity mt-4" style={{ width: 100 }}>
+                                                <div className="input-group-btn">
+                                                    <button
+                                                        onClick={() => dispatch(decrementQty(v.id))}
+                                                        disabled={v.qty === 1}
+                                                        className="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                        <i className="fa fa-minus" />
+                                                    </button>
+                                                </div>
+                                                <input
+                                                    type="text"
+                                                    className="form-control form-control-sm text-center border-0"
+                                                    value={v.qty}
+                                                    onChange={(event) => dispatch(upDateQty({ id: v.id, qty: parseInt(event.target.value) }))}
+                                                />
+                                                <div className="input-group-btn">
+                                                    <button
+                                                        onClick={() => dispatch(incremetQty1(v.id))}
+                                                        disabled={v.qty === 10}
+                                                        className="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                        <i className="fa fa-plus" />
+                                                    </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p className="mb-0 mt-4">2.99 $</p>
-                                    </td>
-                                    <td>
-                                        <button className="btn btn-md rounded-circle bg-light border mt-4">
-                                            <i className="fa fa-times text-danger" />
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <div className="d-flex align-items-center">
-                                            <img src="img/vegetable-item-5.jpg" className="img-fluid me-5 rounded-circle" style={{ width: 80, height: 80 }} alt />
-                                        </div>
-                                    </th>
-                                    <td>
-                                        <p className="mb-0 mt-4">Potatoes</p>
-                                    </td>
-                                    <td>
-                                        <p className="mb-0 mt-4">2.99 $</p>
-                                    </td>
-                                    <td>
-                                        <div className="input-group quantity mt-4" style={{ width: 100 }}>
-                                            <div className="input-group-btn">
-                                                <button className="btn btn-sm btn-minus rounded-circle bg-light border">
-                                                    <i className="fa fa-minus" />
-                                                </button>
-                                            </div>
-                                            <input type="text" className="form-control form-control-sm text-center border-0" defaultValue={1} />
-                                            <div className="input-group-btn">
-                                                <button className="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                    <i className="fa fa-plus" />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p className="mb-0 mt-4">2.99 $</p>
-                                    </td>
-                                    <td>
-                                        <button className="btn btn-md rounded-circle bg-light border mt-4">
-                                            <i className="fa fa-times text-danger" />
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <div className="d-flex align-items-center">
-                                            <img src="img/vegetable-item-2.jpg" className="img-fluid me-5 rounded-circle" style={{ width: 80, height: 80 }} alt />
-                                        </div>
-                                    </th>
-                                    <td>
-                                        <p className="mb-0 mt-4">Awesome Brocoli</p>
-                                    </td>
-                                    <td>
-                                        <p className="mb-0 mt-4">2.99 $</p>
-                                    </td>
-                                    <td>
-                                        <div className="input-group quantity mt-4" style={{ width: 100 }}>
-                                            <div className="input-group-btn">
-                                                <button className="btn btn-sm btn-minus rounded-circle bg-light border">
-                                                    <i className="fa fa-minus" />
-                                                </button>
-                                            </div>
-                                            <input type="text" className="form-control form-control-sm text-center border-0" defaultValue={1} />
-                                            <div className="input-group-btn">
-                                                <button className="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                    <i className="fa fa-plus" />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p className="mb-0 mt-4">2.99 $</p>
-                                    </td>
-                                    <td>
-                                        <button className="btn btn-md rounded-circle bg-light border mt-4">
-                                            <i className="fa fa-times text-danger" />
-                                        </button>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>
+                                            <p className="mb-0 mt-4">{(v.price * v.qty)} $</p> {/* quantity 1 assumed */}
+                                        </td>
+                                        <td>
+                                            <button
+                                                onClick={() => dispatch(removeQty(v.id))}
+                                                className="btn btn-md rounded-circle bg-light border mt-4">
+                                                <i className="fa fa-times text-danger" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+
                             </tbody>
                         </table>
                     </div>
@@ -152,7 +159,7 @@ function Cart(props) {
                                     <h1 className="display-6 mb-4">Cart <span className="fw-normal">Total</span></h1>
                                     <div className="d-flex justify-content-between mb-4">
                                         <h5 className="mb-0 me-4">Subtotal:</h5>
-                                        <p className="mb-0">$96.00</p>
+                                        <p className="mb-0">${fData?.reduce((acc, v) => acc + (v.price * v.qty), 0)}</p>
                                     </div>
                                     <div className="d-flex justify-content-between">
                                         <h5 className="mb-0 me-4">Shipping</h5>
@@ -164,17 +171,17 @@ function Cart(props) {
                                 </div>
                                 <div className="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                                     <h5 className="mb-0 ps-4 me-4">Total</h5>
-                                    <p className="mb-0 pe-4">$99.00</p>
+                                    <p className="mb-0 pe-4">${fData?.reduce((acc, v) => acc + (v.price * v.qty), 0 + 3)}</p>
                                 </div>
                                 <button className="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
             {/* Cart Page End */}
 
-        </div>
+        </div >
     );
 }
 

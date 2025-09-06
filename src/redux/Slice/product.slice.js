@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BASE_URL } from "../../constant/url";
 
 const initialState = {
     isLoading: false,
@@ -11,7 +12,7 @@ const initialState = {
 export const getAllProduct = createAsyncThunk(
     "product/getAllProduct",
     async () => {
-        const response = await fetch("http://localhost:3000/product");
+        const response = await fetch(`${BASE_URL}/product`);
         return await response.json();
     }
 );
@@ -21,7 +22,7 @@ export const getAllProduct = createAsyncThunk(
 export const addProductData = createAsyncThunk(
     "product/addProductData",
     async (data) => {
-        const response = await fetch("http://localhost:3000/product", {
+        const response = await fetch(`${BASE_URL}/product`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -35,7 +36,7 @@ export const addProductData = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
     "product/updateProduct",
     async (data) => {
-        const response = await fetch(`http://localhost:3000/product/` + data.id, {
+        const response = await fetch(`${BASE_URL}/product/` + data.id, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -49,7 +50,7 @@ export const updateProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
     "product/deleteProduct",
     async (id) => {
-        await fetch(`http://localhost:3000/product/${id}`, {
+        await fetch(`${BASE_URL}/product/${id}`, {
             method: "DELETE"
         });
         return id;

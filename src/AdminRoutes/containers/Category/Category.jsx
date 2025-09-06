@@ -8,8 +8,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-import { object, string } from 'yup';
-import { useFormik } from 'formik';
+import { object, string, mixed } from 'yup';
+import { Form, Formik, useFormik } from 'formik';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
@@ -41,6 +41,7 @@ function Category(props) {
 
     // -------- Yup Validation Schema --------
     let categorySchema = object({
+        cat_ima: mixed().required("Please Select Category Image"),
         name: string().required("Please Enter Category Name"),
         description: string().required("Please Enter Category Description")
     });
@@ -49,6 +50,7 @@ function Category(props) {
     // -------- Formik Validation Setup --------
     const formik = useFormik({
         initialValues: {
+            // cat_ima: null,
             name: '',
             description: '',
         },
@@ -209,7 +211,7 @@ function Category(props) {
                        <span>  Add Category</span>
                     </Button>
                 </Box> */}
-                
+
 
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <ButtonInput
@@ -233,32 +235,58 @@ function Category(props) {
                     <DialogTitle>Category</DialogTitle>
                     <DialogContent sx={{ paddingBottom: 0 }}>
 
-                        <form onSubmit={handleSubmit}>
-                            <TextInput
-                                id="name"
-                                name="name"
-                                label="Name"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.name}
-                                error={touched.name && errors.name}
-                                helperText={touched.name && errors.name ? errors.name : ''}
-                            />
-                            <TextInput
-                                id="description"
-                                name="description"
-                                label="Description"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.description}
-                                error={touched.description && errors.description}
-                                helperText={touched.description && errors.description ? errors.description : ''}
-                            />
-                            <DialogActions>
-                                <Button type="submit">Submit</Button>
-                                <Button onClick={handleClose}>Cancel</Button>
-                            </DialogActions>
-                        </form>
+                        <Formik
+                            initialValues={{
+                                // cat_ima: null,
+                                name: '',
+                                description: '',
+                            }}
+                            validationSchema={categorySchema}
+                            onSubmit={(values, { resetForm }) => {
+                                console.log(values);
+
+                                // Add or Update Category
+                                if (update === null) {
+                                    dispatch(addCategory(values));
+                                    // handleCategory(values);
+                                } else {
+                                    dispatch(updateCategory({ ...values, id: update }));
+                                    // updateCategorydata(values);
+                                }
+                                resetForm(); // Clear fields
+                                handleClose(); // Close dialog box mate
+                            }}
+                        >
+
+                            <Form>
+                                <TextInput
+                                    id="name"
+                                    name="name"
+                                    label="Name"
+                                // onChange={handleChange}
+                                // onBlur={handleBlur}
+                                // value={values.name}
+                                // error={touched.name && errors.name}
+                                // helperText={touched.name && errors.name ? errors.name : ''}
+                                />
+                                <TextInput
+                                    id="description"
+                                    name="description"
+                                    label="Description"
+                                // onChange={handleChange}
+                                // onBlur={handleBlur}
+                                // value={values.description}
+                                // error={touched.description && errors.description}
+                                // helperText={touched.description && errors.description ? errors.description : ''}
+                                />
+                                <DialogActions>
+                                    <Button type="submit">Submit</Button>
+                                    <Button onClick={handleClose}>Cancel</Button>
+                                </DialogActions>
+                            </Form>
+
+                        </Formik>
+
 
                     </DialogContent>
                 </Dialog>

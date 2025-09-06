@@ -5,6 +5,7 @@ import { getAllProduct } from '../../redux/Slice/product.slice';
 import { getAllSubCategory } from '../../redux/Slice/subcategory.slice';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import { NavLink, useParams } from 'react-router-dom';
+import { addToCart } from '../../redux/Slice/cart.slice';
 
 
 function Shop(props) {
@@ -17,12 +18,12 @@ function Shop(props) {
     const dispatch = useDispatch();
     const { id } = useParams();
     console.log(id);
-    
-    useEffect( () => {
+
+    useEffect(() => {
         if (id) {
             setCategory(id)
         }
-    }, [] );
+    }, []);
 
 
     useEffect(() => {
@@ -195,7 +196,7 @@ function Shop(props) {
                                                                     {v.name}
                                                                 </a>
                                                                 <span>
-                                                                   ({  prodata.product.filter((p) => p.categoryId === v.id).length })
+                                                                    ({prodata.product.filter((p) => p.categoryId === v.id).length})
                                                                 </span>
                                                             </div>
                                                         </li>
@@ -359,8 +360,21 @@ function Shop(props) {
                                                                 <div className="p-4 border border-secondary border-top-0 rounded-bottom">
                                                                     <div className="d-flex justify-content-between flex-lg-wrap">
                                                                         <p className="text-dark fs-5 fw-bold mb-0">${v.price} / kg</p>
-                                                                        <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary">
-                                                                            <i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart
+                                                                        <a
+                                                                            onClick={(event) => {
+                                                                                event.preventDefault();
+                                                                                dispatch(
+                                                                                    addToCart(
+                                                                                        {
+                                                                                            userid: 'ghjghj',
+                                                                                            cart: { id: v.id, qty: 1 }
+                                                                                        }
+                                                                                    )
+                                                                                )
+                                                                            }}
+                                                                            className="btn border border-secondary rounded-pill px-3 text-primary">
+                                                                            <i className="fa fa-shopping-bag me-2 text-primary" />
+                                                                            Add to cart
                                                                         </a>
                                                                     </div>
                                                                 </div>

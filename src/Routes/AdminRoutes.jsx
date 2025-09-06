@@ -6,6 +6,7 @@ import F404 from '../containers/F404/F404';
 import Layout from '../AdminRoutes/component/Layout/Layout';
 import Counter from '../AdminRoutes/containers/Counter/Counter';
 import Product from '../AdminRoutes/containers/Product/Product';
+import Review from '../AdminRoutes/containers/Review/Review';
 
 
 function AdminRoutes(props) {
@@ -16,6 +17,7 @@ function AdminRoutes(props) {
                 <Route path="/Category" element={<Category />} />
                 <Route path="/SubCategory" element={<SubCategory />} />
                 <Route path="/Product" element={<Product />} />
+                <Route path="/review" element={<Review />} />
                 <Route path="/Counter" element={<Counter />} />
 
                 {/* -------- path name mistake arror -------- */}

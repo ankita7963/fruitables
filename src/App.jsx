@@ -6,31 +6,31 @@ import AdminRoutes from './Routes/AdminRoutes'
 import PrivateRoutes from './Routes/PrivateRoutes'
 import MUIdemo from './Material_User_Interface/MUIdemo'
 import { Provider } from 'react-redux'
-import { store } from './redux/Store'
+import { PersistGate } from 'redux-persist/integration/react'
+import createReduxStore from './redux/Store'
 
 function App() {
+  const { store, persistor} = createReduxStore();
 
   return (
-
-    <>
+    
       <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
 
-        <Routes>
+          <Routes>
 
-          {/* ---"/*" (wildcard chhe) – atle ke. bdhu UserRoutes component hendle kar chhe.--- */}
-          <Route path="/*" element={<UserRoutes />} />
+            {/* ---"/*" (wildcard chhe) – atle ke. bdhu UserRoutes component hendle kar chhe.--- */}
+            <Route path="/*" element={<UserRoutes />} />
 
-          <Route element={<PrivateRoutes />}>
-            <Route path="/admin/*" element={<AdminRoutes />} />
-          </Route>
+            <Route element={<PrivateRoutes />}>
+              <Route path="/admin/*" element={<AdminRoutes />} />
+            </Route>
 
-        </Routes>
+          </Routes>
+        </PersistGate>
 
       </Provider>
 
-      {/* <br></br> */}
-      {/* <MUIdemo /> */}
-    </>
 
 
   )

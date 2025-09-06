@@ -1,15 +1,20 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 function Header(props) {
+    const cartData = useSelector(state => state.cart);
+    console.log(cartData);
+
+
     return (
         <div>
             {/* Spinner Start */}
             {/* <div id="spinner" className="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
                 <div className="spinner-grow text-primary" role="status" />
             </div> */}
-            {/* Spinner End */} 
-            
+            {/* Spinner End */}
+
             {/* Navbar start */}
             <div className="container-fluid fixed-top">
                 <div className="container topbar bg-primary d-none d-lg-block">
@@ -35,8 +40,8 @@ function Header(props) {
                             <div className="navbar-nav mx-auto">
                                 <NavLink to={"/"} className="nav-item nav-link active">Home</NavLink>
                                 <NavLink to={"/Shop"} className="nav-item nav-link">Shop</NavLink>
-                                <NavLink to={"/ShopDetail"} className="nav-item nav-link">Shop Detail</NavLink>
-                                <div className="nav-item dropdown">
+                                {/* <NavLink to={"/ShopDetail"} className="nav-item nav-link">Shop Detail</NavLink> */}
+                                {/* <div className="nav-item dropdown">
                                     <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                     <div className="dropdown-menu m-0 bg-secondary rounded-0">
                                         <NavLink to={"/Cart"} className="dropdown-item">Cart</NavLink>
@@ -44,15 +49,24 @@ function Header(props) {
                                         <NavLink to={"/Testimonial"} className="dropdown-item">Testimonial</NavLink>
                                         <NavLink to={"/F404"} className="dropdown-item">404 Page</NavLink>
                                     </div>
-                                </div>
+                                </div> */}
                                 <NavLink to={"/Contact"} className="nav-item nav-link">Contact</NavLink>
                             </div>
                             <div className="d-flex m-3 me-0">
                                 <button className="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i className="fas fa-search text-primary" /></button>
-                                <a href="#" className="position-relative me-4 my-auto">
+                                <NavLink
+                                    to={"/cart"}
+                                    className="position-relative me-4 my-auto">
                                     <i className="fa fa-shopping-bag fa-2x" />
-                                    <span className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style={{ top: '-5px', left: 15, height: 20, minWidth: 20 }}>3</span>
-                                </a>
+                                    <span
+                                        className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+                                        style={{ top: '-5px', left: 15, height: 20, minWidth: 20 }}
+                                    >
+                                        {
+                                            cartData?.cart?.cart?.reduce((acc, v) => acc + v.qty, 0)
+                                        }
+                                    </span>
+                                </NavLink>
                                 <a href="#" className="my-auto">
                                     <i className="fas fa-user fa-2x" />
                                 </a>
