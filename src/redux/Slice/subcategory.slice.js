@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BASE_URL } from "../../constant/url";
 
 const initialState = {
     isLoading: false,
@@ -12,7 +13,7 @@ const initialState = {
 export const getAllSubCategory = createAsyncThunk(
     "subCategory/getAllSubCategory",
     async () => {
-        const response = await fetch("http://localhost:3000/subCategory");
+        const response = await fetch(`${BASE_URL}/subCategory`);
         const data = await response.json();
         return data;
         // return await response.json();
@@ -24,7 +25,7 @@ export const getAllSubCategory = createAsyncThunk(
 export const addSubCategory = createAsyncThunk(
     "subCategory/addSubCategory",
     async (data) => {
-        const response = await fetch("http://localhost:3000/subCategory", {
+        const response = await fetch(`${BASE_URL}/subCategory`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -38,7 +39,7 @@ export const addSubCategory = createAsyncThunk(
 export const updateSubCategory = createAsyncThunk(
     "subCategory/updateSubCategory",
     async (data) => {
-        const response = await fetch(`http://localhost:3000/subCategory/` + data.id, {
+        const response = await fetch(`${BASE_URL}/subCategory/` + data.id, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -52,7 +53,7 @@ export const updateSubCategory = createAsyncThunk(
 export const deleteSubCategory = createAsyncThunk(
     "subCategory/deleteSubCategory",
     async (id) => {
-        await fetch(`http://localhost:3000/subCategory/${id}`, {
+        await fetch(`${BASE_URL}/subCategory/${id}`, {
             method: "DELETE"
         });
         return id;

@@ -5,14 +5,14 @@ import { useParams } from 'react-router-dom';
 import Product from '../../AdminRoutes/containers/Product/Product';
 import { decrementQty, incremetQty, removeQty, upDateQty } from '../../redux/Slice/cart.slice';
 import reducer from '../../redux/Slice/category.slice';
-import { getCart, incremetQty1 } from '../../redux/Slice/cart1.slice';
+import { decrementQty1, getCart, incremetQty1, removeQty1, upDateQty1 } from '../../redux/Slice/cart1.slice';
 
 function Cart(props) {
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // dispatch(getAllProduct());
+        dispatch(getAllProduct());
         dispatch(getCart('ghjghj'))
     }, []);
 
@@ -75,7 +75,7 @@ function Cart(props) {
                             <tbody>
 
                                 {fData?.map((v) => (
-                                    <tr>
+                                    <tr key={v.id}>
                                         <th scope="row">
                                             <div className="d-flex align-items-center">
                                                 {/* <img
@@ -109,7 +109,7 @@ function Cart(props) {
                                             <div className="input-group quantity mt-4" style={{ width: 100 }}>
                                                 <div className="input-group-btn">
                                                     <button
-                                                        onClick={() => dispatch(decrementQty(v.id))}
+                                                        onClick={() => dispatch(decrementQty1(v.id))}
                                                         disabled={v.qty === 1}
                                                         className="btn btn-sm btn-minus rounded-circle bg-light border">
                                                         <i className="fa fa-minus" />
@@ -119,7 +119,7 @@ function Cart(props) {
                                                     type="text"
                                                     className="form-control form-control-sm text-center border-0"
                                                     value={v.qty}
-                                                    onChange={(event) => dispatch(upDateQty({ id: v.id, qty: parseInt(event.target.value) }))}
+                                                    onChange={(event) => dispatch(upDateQty1({ id: v.id, qty: parseInt(event.target.value) }))}
                                                 />
                                                 <div className="input-group-btn">
                                                     <button
@@ -136,7 +136,7 @@ function Cart(props) {
                                         </td>
                                         <td>
                                             <button
-                                                onClick={() => dispatch(removeQty(v.id))}
+                                                onClick={() => dispatch(removeQty1(v.id))}
                                                 className="btn btn-md rounded-circle bg-light border mt-4">
                                                 <i className="fa fa-times text-danger" />
                                             </button>

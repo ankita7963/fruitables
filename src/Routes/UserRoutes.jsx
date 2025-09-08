@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../component/header/header';
+// import Header from '../component/header/header';
 import { Route, Routes } from 'react-router-dom';
 import Home from '../containers/Home/Home';
 import Contact from '../containers/Contact/Contact';
@@ -11,6 +11,8 @@ import ShopDetail from '../containers/ShopDetail/ShopDetail';
 import Cart from '../containers/Cart/Cart';
 import Chackout from '../containers/Chackout/Chackout';
 import Testimonial from '../containers/Testimonial/Testimonial';
+import Header from '../component/Header/Header';
+import Favorite from '../containers/Favorite/Favorite';
 
 function UserRoutes(props) {
     return (
@@ -26,6 +28,7 @@ function UserRoutes(props) {
                     <Route path="/shop/:id" element={<Shop />} />
                     <Route path="/ShopDetail/:id" element={<ShopDetail />} />
                     <Route path="/Cart" element={<Cart />} />
+                    <Route path="/Favorite" element={<Favorite />} />
                     <Route path="/Chackout" element={<Chackout />} />
                     <Route path="/Testimonial" element={<Testimonial />} />
                     <Route path="/F404" element={<F404 />} />

@@ -6,6 +6,8 @@ import { getAllSubCategory } from '../../redux/Slice/subcategory.slice';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import { NavLink, useParams } from 'react-router-dom';
 import { addToCart } from '../../redux/Slice/cart.slice';
+import { addtoCart1 } from '../../redux/Slice/cart1.slice';
+import { addToFav } from '../../redux/Slice/fav.slice';
 
 
 function Shop(props) {
@@ -350,8 +352,22 @@ function Shop(props) {
                                                                         style={{ objectFit: 'cover' }}
                                                                     />
                                                                 </div>
-                                                                <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>
+                                                                {/* productname */}
+                                                                <div
+                                                                    className="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                                                    style={{ top: 10, left: 10 }}
+                                                                >
                                                                     {sacadata.subCategory.find((sub) => sub.id === v.subcategoryId)?.name || ''}
+                                                                </div>
+                                                                {/* favicon */}
+                                                                <div
+                                                                    className="text-white  px-2 py-1 rounded position-absolute"
+                                                                    style={{ top: 10, right: 10 }}
+                                                                    onClick={(event) => {
+                                                                        event.preventDefault(); dispatch(addToFav({ userid: 'ghjghj', fav: { id: v.id } }))
+                                                                    }}
+                                                                >
+                                                                    <i class="fas fa-light fa-heart"></i>
                                                                 </div>
                                                             </div>
                                                             <div className="p-4 border border-secondary border-top-0 rounded-bottom">
@@ -364,7 +380,7 @@ function Shop(props) {
                                                                             onClick={(event) => {
                                                                                 event.preventDefault();
                                                                                 dispatch(
-                                                                                    addToCart(
+                                                                                    addtoCart1(
                                                                                         {
                                                                                             userid: 'ghjghj',
                                                                                             cart: { id: v.id, qty: 1 }

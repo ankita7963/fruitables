@@ -8,6 +8,7 @@ import reviewSlice from "./Slice/review.slice";
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import  cart1Slice  from "./Slice/cart1.slice";
+import  favSlice  from "./Slice/fav.slice";
 
 
 
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
     product: productSlice,
     review: reviewSlice,
     cart: cartSlice,
-    cart1: cart1Slice
+    cart1: cart1Slice,
+    fav: favSlice
 
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer)

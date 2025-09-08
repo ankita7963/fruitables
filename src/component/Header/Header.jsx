@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 function Header(props) {
-    const cartData = useSelector(state => state.cart);
+    const cartData = useSelector(state => state.cart1);
     console.log(cartData);
 
 
@@ -52,8 +52,18 @@ function Header(props) {
                                 </div> */}
                                 <NavLink to={"/Contact"} className="nav-item nav-link">Contact</NavLink>
                             </div>
+
                             <div className="d-flex m-3 me-0">
-                                <button className="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i className="fas fa-search text-primary" /></button>
+                                {/* Search Button */}
+                                <button
+                                    className="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#searchModal"
+                                >
+                                    <i className="fas fa-search text-primary" />
+                                </button>
+
+                                {/* Cart Button */}
                                 <NavLink
                                     to={"/cart"}
                                     className="position-relative me-4 my-auto">
@@ -67,15 +77,26 @@ function Header(props) {
                                         }
                                     </span>
                                 </NavLink>
-                                <a href="#" className="my-auto">
+
+                                {/* User Icon */}
+                                <a href="#" className="my-auto me-4">
                                     <i className="fas fa-user fa-2x" />
                                 </a>
+
+                                {/* Heart Icon */}
+                                <NavLink
+                                    to={"/Favorite"}
+                                    className="my-auto"
+                                >
+                                    <i className="fas fa-heart fa-2x" />
+                                </NavLink>
                             </div>
                         </div>
                     </nav>
                 </div>
             </div>
             {/* Navbar End */}
+
             {/* Modal Search Start */}
             <div className="modal fade" id="searchModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-fullscreen">
