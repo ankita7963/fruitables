@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { ThemeContext } from '../../context/ThemeContext';
 
 function Header(props) {
     const cartData = useSelector(state => state.cart1);
     console.log(cartData);
+
+    const theme = useContext(ThemeContext);
+    console.log(theme);
+
+    const handleTheme = () => {
+        theme.toogleTheme(theme.theme)
+    }
+    
 
 
     return (
@@ -54,6 +63,15 @@ function Header(props) {
                             </div>
 
                             <div className="d-flex m-3 me-0">
+
+                                {/* theme Icon */}
+                                <a 
+                                href="#" 
+                                className="my-auto me-4"
+                                onClick={() => handleTheme()}
+                                >
+                                    <i className="fas fa-solid fa-moon fa-2x"></i>
+                                </a>
                                 {/* Search Button */}
                                 <button
                                     className="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"

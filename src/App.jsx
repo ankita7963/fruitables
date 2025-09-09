@@ -8,12 +8,14 @@ import MUIdemo from './Material_User_Interface/MUIdemo'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import createReduxStore from './redux/Store'
+import { ThemeProvider } from './context/ThemeContext.jsx'
 
 function App() {
-  const { store, persistor} = createReduxStore();
+  const { store, persistor } = createReduxStore();
 
   return (
-    
+    <ThemeProvider>
+
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
 
@@ -31,7 +33,7 @@ function App() {
 
       </Provider>
 
-
+    </ThemeProvider>
 
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import Header from '../component/header/header';
 import { Route, Routes } from 'react-router-dom';
 import Home from '../containers/Home/Home';
@@ -13,11 +13,15 @@ import Chackout from '../containers/Chackout/Chackout';
 import Testimonial from '../containers/Testimonial/Testimonial';
 import Header from '../component/Header/Header';
 import Favorite from '../containers/Favorite/Favorite';
+import { ThemeContext } from '../context/ThemeContext';
 
 function UserRoutes(props) {
+    const theme = useContext(ThemeContext);
+    console.log(theme);
+
     return (
 
-        <>
+        <div className={theme.theme}>
             <Header />
 
             <Routes>
@@ -41,7 +45,7 @@ function UserRoutes(props) {
             </Routes>
 
             <Footer />
-        </>
+        </div>
 
     );
 }

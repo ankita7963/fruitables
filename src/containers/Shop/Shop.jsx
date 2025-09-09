@@ -367,7 +367,7 @@ function Shop(props) {
                                                                         event.preventDefault(); dispatch(addToFav({ userid: 'ghjghj', fav: { id: v.id } }))
                                                                     }}
                                                                 >
-                                                                    <i class="fas fa-light fa-heart"></i>
+                                                                    <i className="fas fa-light fa-heart"></i>
                                                                 </div>
                                                             </div>
                                                             <div className="p-4 border border-secondary border-top-0 rounded-bottom">
