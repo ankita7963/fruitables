@@ -111,13 +111,13 @@ function Cart(props) {
                                                     <button
                                                         onClick={() => dispatch(decrementQty1(v.id))}
                                                         disabled={v.qty === 1}
-                                                        className="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                        className="btn btn-sm btn-minus rounded-circle bg-light border countDeBox">
                                                         <i className="fa fa-minus" />
                                                     </button>
                                                 </div>
                                                 <input
                                                     type="text"
-                                                    className="form-control form-control-sm text-center border-0"
+                                                    className="form-control form-control-sm text-center border-0 boxColor"
                                                     value={v.qty}
                                                     onChange={(event) => dispatch(upDateQty1({ id: v.id, qty: parseInt(event.target.value) }))}
                                                 />
@@ -125,7 +125,7 @@ function Cart(props) {
                                                     <button
                                                         onClick={() => dispatch(incremetQty1(v.id))}
                                                         disabled={v.qty === 10}
-                                                        className="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                        className="btn btn-sm btn-plus rounded-circle bg-light border countInBox">
                                                         <i className="fa fa-plus" />
                                                     </button>
                                                 </div>

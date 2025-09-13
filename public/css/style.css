@@ -527,7 +527,36 @@
     color: white !important;
 }
 
+/*** comman Start ***/
+.dark .whiteTxt {
+    color: white;
+}
 
+.dark .inputTxtBox {
+    background-color: rgb(21, 20, 20) !important;
+}
+.dark input::placeholder {
+  color: white !important; 
+}
+.dark .footerInput{
+    border-color: #ffb524 !important;
+}
+.dark .boxColor {
+    background-color: rgb(21, 20, 20) !important;
+    box-shadow: 0 3px 16px rgba(109, 109, 109, 0.8);
+}
+.dark .countDeBox {
+    margin-right: 4.5px;
+}
+.dark .countInBox {
+    margin-left: 4.5px;
+}
+.dark .text-dark {
+    color: white !important; 
+}
+/*** comman end ***/
+
+/*** Navbar Start ***/
 .dark .fixed-top {
     background: black;
 }
@@ -536,21 +565,34 @@
     color: white;
 }
 
+.dark .navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active,
+.fixed-top.bg-white .navbar .navbar-nav .nav-link:hover,
+.fixed-top.bg-white .navbar .navbar-nav .nav-link.active {
+    color: var(--bs-primary);
+}
+
+/*** Navbar end ***/
+
+
+
+
+
 /*** hero start ***/
 .dark .hero-header {
-    /* background: linear-gradient(rgba(248, 223, 173, 0.1), rgba(248, 223, 173, 0.1)), url(/public/img/hero-img.jpg); */
-    background: linear-gradient(rgba(0, 0, 0,0.7), rgb(0, 0, 0)), url(/public/img/hero-img.jpg);
-
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgb(0, 0, 0)), url(/public/img/hero-img.jpg);
 }
 
 /*** hero end ***/
 
 
+
+
+
 /*** home page 4 icon box start ***/
 .dark .bg-light {
-    border: 2px solid rgb(72, 3, 3);
-    background-color: black !important;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background-color: rgb(21, 20, 20) !important;
+    box-shadow: 0 3px 16px rgba(109, 109, 109, 0.8);
 }
 
 /* .dark .featurs-content .text-centerh6 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1{
@@ -560,13 +602,19 @@
 /*** home page 4 icon box end ***/
 
 
+
+
+
 /*** member box start ***/
 .dark .bg-white {
-    border: 2px solid rgb(72, 3, 3);
+    /* border: 2px solid rgb(72, 3, 3); */
     background-color: black !important;
 }
 
 /*** member box End ***/
+
+
+
 
 
 /*** our client start ***/
@@ -574,6 +622,9 @@
     color: white ;
 } */
 /*** our client End ***/
+
+
+
 
 
 /*** Footer Start ***/

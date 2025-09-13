@@ -7,7 +7,7 @@ import ClearAllIcon from '@mui/icons-material/ClearAll';
 import { NavLink, useParams } from 'react-router-dom';
 import { addToCart } from '../../redux/Slice/cart.slice';
 import { addtoCart1 } from '../../redux/Slice/cart1.slice';
-import { addToFav } from '../../redux/Slice/fav.slice';
+import { addToFav, getFav, removeFav } from '../../redux/Slice/fav.slice';
 
 
 function Shop(props) {
@@ -32,6 +32,7 @@ function Shop(props) {
         dispatch(getAllCategory());
         dispatch(getAllSubCategory());
         dispatch(getAllProduct());
+        dispatch(getFav('ghjghj'));
     }, []);
 
     const cadata = useSelector(state => state.category);
@@ -43,6 +44,9 @@ function Shop(props) {
 
     const prodata = useSelector(state => state.product);
     console.log(prodata.product);
+
+    const favdata = useSelector(state => state.fav);
+    console.log(favdata.fav);
 
     // -------- total itempage count --------
     const itemPerPage = 6;
@@ -119,6 +123,16 @@ function Shop(props) {
     const pData = PaginationData(fData);
 
 
+    // -------- favorite --------
+    const handleFavrite = (v) => {
+        if (favdata?.fav?.fav?.includes(v.id)) {
+            dispatch(removeFav(v.id))
+        } else {
+            dispatch(addToFav({ userid: 'ghjghj', fav: v.id }))
+        }
+    }
+
+
 
 
     return (
@@ -137,7 +151,7 @@ function Shop(props) {
 
             <div className="container-fluid fruite py-5">
                 <div className="container py-5">
-                    <h1 className="mb-4">Fresh fruits shop</h1>
+                    <h1 className="mb-4 whiteTxt">Fresh fruits shop</h1>
                     <div className="row g-4">
                         <div className="col-lg-12">
 
@@ -185,13 +199,15 @@ function Shop(props) {
                                         {/* category head */}
                                         <div className="col-lg-12">
                                             <div className="mb-3">
-                                                <h4>Categories </h4>
+                                                <h4 className='whiteTxt'>Categories </h4>
                                                 <ul className="list-unstyled fruite-categorie">
                                                     {cadata.category.map((v) => (
                                                         <li key={v.id}>
                                                             <div className="d-flex justify-content-between fruite-name">
                                                                 {/* Add onClick here */}
-                                                                <a href="#" onClick={() => setCategory(v.id)}
+                                                                <a
+                                                                    href="#"
+                                                                    onClick={() => setCategory(v.id)}
                                                                     style={{ cursor: 'pointer', color: category === v.id ? '#81c408' : 'black' }}
                                                                 >
                                                                     <i className="fas fa-apple-alt me-2" />
@@ -210,7 +226,7 @@ function Shop(props) {
                                         {/* price */}
                                         <div className="col-lg-12">
                                             <div className="mb-3">
-                                                <h4 className="mb-2">Price</h4>
+                                                <h4 className="mb-2 whiteTxt">Price</h4>
                                                 <input type="range" className="form-range w-100" id="rangeInput" name="rangeInput"
                                                     min={0} max={500} defaultValue={0} onInput={(e) => setRangeValue(e.target.value)}
                                                 />
@@ -221,7 +237,7 @@ function Shop(props) {
                                         {/* additional */}
                                         <div className="col-lg-12">
                                             <div className="mb-3">
-                                                <h4>Additional</h4>
+                                                <h4 className='whiteTxt'>Additional</h4>
                                                 <div className="mb-2">
                                                     <input type="radio" className="me-2" id="Categories-1" name="Categories-1" defaultValue="Beverages" />
                                                     <label htmlFor="Categories-1"> Organic</label>
@@ -247,7 +263,7 @@ function Shop(props) {
 
                                         {/* Featured products */}
                                         <div className="col-lg-12">
-                                            <h4 className="mb-3">Featured products</h4>
+                                            <h4 className="mb-3 whiteTxt">Featured products</h4>
                                             <div className="d-flex align-items-center justify-content-start">
                                                 <div className="rounded me-4" style={{ width: 100, height: 100 }}>
                                                     <img src="img/featur-1.jpg"
@@ -256,7 +272,7 @@ function Shop(props) {
                                                     />
                                                 </div>
                                                 <div>
-                                                    <h6 className="mb-2">Big Banana</h6>
+                                                    <h6 className="mb-2 whiteTxt">Big Banana</h6>
                                                     <div className="d-flex mb-2">
                                                         <i className="fa fa-star text-secondary" />
                                                         <i className="fa fa-star text-secondary" />
@@ -265,7 +281,7 @@ function Shop(props) {
                                                         <i className="fa fa-star" />
                                                     </div>
                                                     <div className="d-flex mb-2">
-                                                        <h5 className="fw-bold me-2">2.99 $</h5>
+                                                        <h5 className="fw-bold me-2 whiteTxt">2.99 $</h5>
                                                         <h5 className="text-danger text-decoration-line-through">4.11 $</h5>
                                                     </div>
                                                 </div>
@@ -278,7 +294,7 @@ function Shop(props) {
                                                     />
                                                 </div>
                                                 <div>
-                                                    <h6 className="mb-2">Big Banana</h6>
+                                                    <h6 className="mb-2 whiteTxt">Big Banana</h6>
                                                     <div className="d-flex mb-2">
                                                         <i className="fa fa-star text-secondary" />
                                                         <i className="fa fa-star text-secondary" />
@@ -287,7 +303,7 @@ function Shop(props) {
                                                         <i className="fa fa-star" />
                                                     </div>
                                                     <div className="d-flex mb-2">
-                                                        <h5 className="fw-bold me-2">2.99 $</h5>
+                                                        <h5 className="fw-bold me-2 whiteTxt">2.99 $</h5>
                                                         <h5 className="text-danger text-decoration-line-through">4.11 $</h5>
                                                     </div>
                                                 </div>
@@ -300,7 +316,7 @@ function Shop(props) {
                                                     />
                                                 </div>
                                                 <div>
-                                                    <h6 className="mb-2">Big Banana</h6>
+                                                    <h6 className="mb-2 whiteTxt">Big Banana</h6>
                                                     <div className="d-flex mb-2">
                                                         <i className="fa fa-star text-secondary" />
                                                         <i className="fa fa-star text-secondary" />
@@ -309,7 +325,7 @@ function Shop(props) {
                                                         <i className="fa fa-star" />
                                                     </div>
                                                     <div className="d-flex mb-2">
-                                                        <h5 className="fw-bold me-2">2.99 $</h5>
+                                                        <h5 className="fw-bold me-2 whiteTxt">2.99 $</h5>
                                                         <h5 className="text-danger text-decoration-line-through">4.11 $</h5>
                                                     </div>
                                                 </div>
@@ -354,7 +370,7 @@ function Shop(props) {
                                                                 </div>
                                                                 {/* productname */}
                                                                 <div
-                                                                    className="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                                                    className="text-white bg-secondary px-3 py-1 rounded position-absolute "
                                                                     style={{ top: 10, left: 10 }}
                                                                 >
                                                                     {sacadata.subCategory.find((sub) => sub.id === v.subcategoryId)?.name || ''}
@@ -363,17 +379,19 @@ function Shop(props) {
                                                                 <div
                                                                     className="text-white  px-2 py-1 rounded position-absolute"
                                                                     style={{ top: 10, right: 10 }}
-                                                                    onClick={(event) => {
-                                                                        event.preventDefault(); dispatch(addToFav({ userid: 'ghjghj', fav: { id: v.id } }))
-                                                                    }}
+                                                                    onClick={(event) => { event.preventDefault(); handleFavrite(v); }}
                                                                 >
-                                                                    <i className="fas fa-light fa-heart"></i>
+                                                                    <i
+                                                                        className="fas fa-light fa-heart"
+                                                                        style={{ color: favdata?.fav?.fav?.includes(v.id) ? 'green' : 'white' }}
+                                                                    >
+                                                                    </i>
                                                                 </div>
                                                             </div>
-                                                            <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                                <h3>{v.title}</h3>
+                                                            <div className="p-4 border border-secondary border-top-0 rounded-bottom boxColor">
+                                                                <h3 className='whiteTxt'>{v.title}</h3>
                                                                 <p>{v.description}</p>
-                                                                <div className="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                                <div className="p-4 border-secondary border-top-0 rounded-bottom">
                                                                     <div className="d-flex justify-content-between flex-lg-wrap">
                                                                         <p className="text-dark fs-5 fw-bold mb-0">${v.price} / kg</p>
                                                                         <a

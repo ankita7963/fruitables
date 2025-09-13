@@ -8,6 +8,7 @@ function ButtonInput({ variant = "outlined", onClick, title, type }) {
             variant={variant}
             onClick={onClick}
             type={type}
+            sx={{ my: 2 }}
         >
             {title}
         </Button>

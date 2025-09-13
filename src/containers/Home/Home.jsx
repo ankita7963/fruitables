@@ -3,6 +3,8 @@ import React from 'react';
 function Home(props) {
     return (
         <div>
+
+            
             {/* Hero Start */}
             <div className="container-fluid py-5 mb-5 hero-header">
                 <div className="container py-5">
@@ -11,7 +13,7 @@ function Home(props) {
                             <h4 className="mb-3 text-secondary">100% Organic Foods</h4>
                             <h1 className="mb-5 display-3 text-primary">Organic Veggies &amp; Fruits Foods</h1>
                             <div className="position-relative mx-auto">
-                                <input className="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill" type="number" placeholder="Search" />
+                                <input className="form-control border-2 border-secondary w-75 py-3 px-4 rounded-pill inputTxtBox" type="number" placeholder="Search" />
                                 <button type="submit" className="btn btn-primary border-2 border-secondary py-3 px-4 position-absolute rounded-pill text-white h-100" style={{ top: 0, right: '25%' }}>Submit Now</button>
                             </div>
                         </div>
@@ -41,6 +43,8 @@ function Home(props) {
                 </div>
             </div>
             {/* Hero End */}
+
+
             {/* Featurs Section Start */}
             <div className="container-fluid featurs py-5">
                 <div className="container py-5">
@@ -51,7 +55,7 @@ function Home(props) {
                                     <i className="fas fa-car-side fa-3x text-white" />
                                 </div>
                                 <div className="featurs-content text-center">
-                                    <h5>Free Shipping</h5>
+                                    <h5 className='whiteTxt'>Free Shipping</h5>
                                     <p className="mb-0">Free on order over $300</p>
                                 </div>
                             </div>
@@ -62,7 +66,7 @@ function Home(props) {
                                     <i className="fas fa-user-shield fa-3x text-white" />
                                 </div>
                                 <div className="featurs-content text-center">
-                                    <h5>Security Payment</h5>
+                                    <h5 className='whiteTxt'>Security Payment</h5>
                                     <p className="mb-0">100% security payment</p>
                                 </div>
                             </div>
@@ -73,7 +77,7 @@ function Home(props) {
                                     <i className="fas fa-exchange-alt fa-3x text-white" />
                                 </div>
                                 <div className="featurs-content text-center">
-                                    <h5>30 Day Return</h5>
+                                    <h5 className='whiteTxt'>30 Day Return</h5>
                                     <p className="mb-0">30 day money guarantee</p>
                                 </div>
                             </div>
@@ -84,7 +88,7 @@ function Home(props) {
                                     <i className="fa fa-phone-alt fa-3x text-white" />
                                 </div>
                                 <div className="featurs-content text-center">
-                                    <h5>24/7 Support</h5>
+                                    <h5 className='whiteTxt'>24/7 Support</h5>
                                     <p className="mb-0">Support every time fast</p>
                                 </div>
                             </div>
@@ -93,13 +97,15 @@ function Home(props) {
                 </div>
             </div>
             {/* Featurs Section End */}
-            {/* Fruits Shop Start*/}
+
+
+            {/* Our Organic Products  /  Fruits Shop Start*/}
             <div className="container-fluid fruite py-5">
                 <div className="container py-5">
                     <div className="tab-class text-center">
                         <div className="row g-4">
                             <div className="col-lg-4 text-start">
-                                <h1>Our Organic Products</h1>
+                                <h1 className='whiteTxt'>Our Organic Products</h1>
                             </div>
                             <div className="col-lg-8 text-end">
                                 <ul className="nav nav-pills d-inline-flex text-center mb-5">
@@ -110,7 +116,7 @@ function Home(props) {
                                     </li>
                                     <li className="nav-item">
                                         <a className="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
-                                            <span className="text-dark" style={{ width: 130 }}>Vegetables</span>
+                                            <span className="text-dark whiteTxt" style={{ width: 130 }}>Vegetables</span>
                                         </a>
                                     </li>
                                     <li className="nav-item">
@@ -131,6 +137,7 @@ function Home(props) {
                                 </ul>
                             </div>
                         </div>
+
                         <div className="tab-content">
                             <div id="tab-1" className="tab-pane fade show p-0 active">
                                 <div className="row g-4">
@@ -142,11 +149,11 @@ function Home(props) {
                                                         <img src="img/fruite-item-5.jpg" className="img-fluid w-100 rounded-top" alt />
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
-                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Grapes</h4>
+                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom boxColor">
+                                                        <h4 className='whiteTxt'>Grapes</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
-                                                            <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                            <p className="text-dark fs-5 fw-bold mb-0 ">$4.99 / kg</p>
                                                             <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
                                                         </div>
                                                     </div>
@@ -158,8 +165,8 @@ function Home(props) {
                                                         <img src="img/fruite-item-5.jpg" className="img-fluid w-100 rounded-top" alt />
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
-                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Grapes</h4>
+                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom boxColor">
+                                                        <h4 className='whiteTxt'>Grapes</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -174,11 +181,11 @@ function Home(props) {
                                                         <img src="img/fruite-item-2.jpg" className="img-fluid w-100 rounded-top" alt />
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
-                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Raspberries</h4>
+                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom boxColor">
+                                                        <h4 className='whiteTxt'>Raspberries</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
-                                                            <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                            <p className="text-dark fs-5 fw-bold mb-0 ">$4.99 / kg</p>
                                                             <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
                                                         </div>
                                                     </div>
@@ -190,8 +197,8 @@ function Home(props) {
                                                         <img src="img/fruite-item-4.jpg" className="img-fluid w-100 rounded-top" alt />
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
-                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Apricots</h4>
+                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom boxColor">
+                                                        <h4 className='whiteTxt'>Apricots</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -206,8 +213,8 @@ function Home(props) {
                                                         <img src="img/fruite-item-3.jpg" className="img-fluid w-100 rounded-top" alt />
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
-                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Banana</h4>
+                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom boxColor">
+                                                        <h4 className='whiteTxt'>Banana</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -222,8 +229,8 @@ function Home(props) {
                                                         <img src="img/fruite-item-1.jpg" className="img-fluid w-100 rounded-top" alt />
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
-                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Oranges</h4>
+                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom boxColor">
+                                                        <h4 className='whiteTxt'>Oranges</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -238,8 +245,8 @@ function Home(props) {
                                                         <img src="img/fruite-item-2.jpg" className="img-fluid w-100 rounded-top" alt />
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
-                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Raspberries</h4>
+                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom boxColor">
+                                                        <h4 className='whiteTxt'>Raspberries</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -254,8 +261,8 @@ function Home(props) {
                                                         <img src="img/fruite-item-5.jpg" className="img-fluid w-100 rounded-top" alt />
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
-                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Grapes</h4>
+                                                    <div className="p-4 border border-secondary border-top-0 rounded-bottom boxColor">
+                                                        <h4 className='whiteTxt'>Grapes</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -279,7 +286,7 @@ function Home(props) {
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
                                                     <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Grapes</h4>
+                                                        <h4 className='whiteTxt'>Grapes</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -295,7 +302,7 @@ function Home(props) {
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
                                                     <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Raspberries</h4>
+                                                        <h4 className='whiteTxt'>Raspberries</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -319,7 +326,7 @@ function Home(props) {
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
                                                     <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Oranges</h4>
+                                                        <h4 className='whiteTxt'>Oranges</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -335,7 +342,7 @@ function Home(props) {
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
                                                     <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Apple</h4>
+                                                        <h4 className='whiteTxt'>Apple</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -359,7 +366,7 @@ function Home(props) {
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
                                                     <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Grapes</h4>
+                                                        <h4 className='whiteTxt'>Grapes</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -375,7 +382,7 @@ function Home(props) {
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
                                                     <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Apricots</h4>
+                                                        <h4 className='whiteTxt'>Apricots</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -399,7 +406,7 @@ function Home(props) {
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
                                                     <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Banana</h4>
+                                                        <h4 className='whiteTxt'>Banana</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -415,7 +422,7 @@ function Home(props) {
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
                                                     <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Raspberries</h4>
+                                                        <h4 className='whiteTxt'>Raspberries</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -431,7 +438,7 @@ function Home(props) {
                                                     </div>
                                                     <div className="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{ top: 10, left: 10 }}>Fruits</div>
                                                     <div className="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4>Oranges</h4>
+                                                        <h4 className='whiteTxt'>Oranges</h4>
                                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                         <div className="d-flex justify-content-between flex-lg-wrap">
                                                             <p className="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -449,6 +456,8 @@ function Home(props) {
                 </div>
             </div>
             {/* Fruits Shop End*/}
+
+
             {/* Featurs Start */}
             <div className="container-fluid service py-5">
                 <div className="container py-5">
@@ -499,7 +508,7 @@ function Home(props) {
             {/* Vesitable Shop Start*/}
             <div className="container-fluid vesitable py-5">
                 <div className="container py-5">
-                    <h1 className="mb-0">Fresh Organic Vegetables</h1>
+                    <h1 className="mb-0 whiteTxt">Fresh Organic Vegetables</h1>
                     <div className="owl-carousel vegetable-carousel justify-content-center">
                         <div className="border border-primary rounded position-relative vesitable-item">
                             <div className="vesitable-img">
@@ -617,7 +626,9 @@ function Home(props) {
                 </div>
             </div>
             {/* Vesitable Shop End */}
-            {/* Banner Section Start*/}
+
+
+            {/* Fresh Exotic Fruits  /  Banner Section Start */}
             <div className="container-fluid banner bg-secondary my-5">
                 <div className="container py-5">
                     <div className="row g-4 align-items-center">
@@ -633,10 +644,10 @@ function Home(props) {
                             <div className="position-relative">
                                 <img src="img/baner-1.png" className="img-fluid w-100 rounded" alt />
                                 <div className="d-flex align-items-center justify-content-center bg-white rounded-circle position-absolute" style={{ width: 140, height: 140, top: 0, left: 0 }}>
-                                    <h1 style={{ fontSize: 100 }}>1</h1>
+                                    <h1 style={{ fontSize: 100 }} className='whiteTxt'>1</h1>
                                     <div className="d-flex flex-column">
-                                        <span className="h2 mb-0">50$</span>
-                                        <span className="h4 text-muted mb-0">kg</span>
+                                        <span className="h2 mb-0 whiteTxt">50$</span>
+                                        <span className="h4 text-muted mb-0 ">kg</span>
                                     </div>
                                 </div>
                             </div>
@@ -645,11 +656,13 @@ function Home(props) {
                 </div>
             </div>
             {/* Banner Section End */}
+
+
             {/* Bestsaler Product Start */}
             <div className="container-fluid py-5">
                 <div className="container py-5">
                     <div className="text-center mx-auto mb-5" style={{ maxWidth: 700 }}>
-                        <h1 className="display-4">Bestseller Products</h1>
+                        <h1 className="display-4 whiteTxt">Bestseller Products</h1>
                         <p>Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
                     </div>
                     <div className="row g-4">
@@ -660,7 +673,7 @@ function Home(props) {
                                         <img src="img/best-product-1.jpg" className="img-fluid rounded-circle w-100" alt />
                                     </div>
                                     <div className="col-6">
-                                        <a href="#" className="h5">Organic Tomato</a>
+                                        <a href="#" className="h5 whiteTxt">Organic Tomato</a>
                                         <div className="d-flex my-3">
                                             <i className="fas fa-star text-primary" />
                                             <i className="fas fa-star text-primary" />
@@ -668,7 +681,7 @@ function Home(props) {
                                             <i className="fas fa-star text-primary" />
                                             <i className="fas fa-star" />
                                         </div>
-                                        <h4 className="mb-3">3.12 $</h4>
+                                        <h4 className="mb-3 whiteTxt">3.12 $</h4>
                                         <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
                                     </div>
                                 </div>
@@ -681,7 +694,7 @@ function Home(props) {
                                         <img src="img/best-product-2.jpg" className="img-fluid rounded-circle w-100" alt />
                                     </div>
                                     <div className="col-6">
-                                        <a href="#" className="h5">Organic Tomato</a>
+                                        <a href="#" className="h5 whiteTxt">Organic Tomato</a>
                                         <div className="d-flex my-3">
                                             <i className="fas fa-star text-primary" />
                                             <i className="fas fa-star text-primary" />
@@ -689,7 +702,7 @@ function Home(props) {
                                             <i className="fas fa-star text-primary" />
                                             <i className="fas fa-star" />
                                         </div>
-                                        <h4 className="mb-3">3.12 $</h4>
+                                        <h4 className="mb-3 whiteTxt">3.12 $</h4>
                                         <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
                                     </div>
                                 </div>
@@ -702,7 +715,7 @@ function Home(props) {
                                         <img src="img/best-product-3.jpg" className="img-fluid rounded-circle w-100" alt />
                                     </div>
                                     <div className="col-6">
-                                        <a href="#" className="h5">Organic Tomato</a>
+                                        <a href="#" className="h5 whiteTxt">Organic Tomato</a>
                                         <div className="d-flex my-3">
                                             <i className="fas fa-star text-primary" />
                                             <i className="fas fa-star text-primary" />
@@ -710,7 +723,7 @@ function Home(props) {
                                             <i className="fas fa-star text-primary" />
                                             <i className="fas fa-star" />
                                         </div>
-                                        <h4 className="mb-3">3.12 $</h4>
+                                        <h4 className="mb-3 whiteTxt">3.12 $</h4>
                                         <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
                                     </div>
                                 </div>
@@ -723,7 +736,7 @@ function Home(props) {
                                         <img src="img/best-product-4.jpg" className="img-fluid rounded-circle w-100" alt />
                                     </div>
                                     <div className="col-6">
-                                        <a href="#" className="h5">Organic Tomato</a>
+                                        <a href="#" className="h5 whiteTxt">Organic Tomato</a>
                                         <div className="d-flex my-3">
                                             <i className="fas fa-star text-primary" />
                                             <i className="fas fa-star text-primary" />
@@ -731,7 +744,7 @@ function Home(props) {
                                             <i className="fas fa-star text-primary" />
                                             <i className="fas fa-star" />
                                         </div>
-                                        <h4 className="mb-3">3.12 $</h4>
+                                        <h4 className="mb-3 whiteTxt">3.12 $</h4>
                                         <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
                                     </div>
                                 </div>
@@ -744,7 +757,7 @@ function Home(props) {
                                         <img src="img/best-product-5.jpg" className="img-fluid rounded-circle w-100" alt />
                                     </div>
                                     <div className="col-6">
-                                        <a href="#" className="h5">Organic Tomato</a>
+                                        <a href="#" className="h5 whiteTxt">Organic Tomato</a>
                                         <div className="d-flex my-3">
                                             <i className="fas fa-star text-primary" />
                                             <i className="fas fa-star text-primary" />
@@ -752,7 +765,7 @@ function Home(props) {
                                             <i className="fas fa-star text-primary" />
                                             <i className="fas fa-star" />
                                         </div>
-                                        <h4 className="mb-3">3.12 $</h4>
+                                        <h4 className="mb-3 whiteTxt">3.12 $</h4>
                                         <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
                                     </div>
                                 </div>
@@ -765,7 +778,7 @@ function Home(props) {
                                         <img src="img/best-product-6.jpg" className="img-fluid rounded-circle w-100" alt />
                                     </div>
                                     <div className="col-6">
-                                        <a href="#" className="h5">Organic Tomato</a>
+                                        <a href="#" className="h5 whiteTxt">Organic Tomato</a>
                                         <div className="d-flex my-3">
                                             <i className="fas fa-star text-primary" />
                                             <i className="fas fa-star text-primary" />
@@ -773,7 +786,7 @@ function Home(props) {
                                             <i className="fas fa-star text-primary" />
                                             <i className="fas fa-star" />
                                         </div>
-                                        <h4 className="mb-3">3.12 $</h4>
+                                        <h4 className="mb-3 whiteTxt">3.12 $</h4>
                                         <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
                                     </div>
                                 </div>
@@ -783,7 +796,7 @@ function Home(props) {
                             <div className="text-center">
                                 <img src="img/fruite-item-1.jpg" className="img-fluid rounded" alt />
                                 <div className="py-4">
-                                    <a href="#" className="h5">Organic Tomato</a>
+                                    <a href="#" className="h5 whiteTxt">Organic Tomato</a>
                                     <div className="d-flex my-3 justify-content-center">
                                         <i className="fas fa-star text-primary" />
                                         <i className="fas fa-star text-primary" />
@@ -791,7 +804,7 @@ function Home(props) {
                                         <i className="fas fa-star text-primary" />
                                         <i className="fas fa-star" />
                                     </div>
-                                    <h4 className="mb-3">3.12 $</h4>
+                                    <h4 className="mb-3 whiteTxt">3.12 $</h4>
                                     <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
                                 </div>
                             </div>
@@ -800,7 +813,7 @@ function Home(props) {
                             <div className="text-center">
                                 <img src="img/fruite-item-2.jpg" className="img-fluid rounded" alt />
                                 <div className="py-4">
-                                    <a href="#" className="h5">Organic Tomato</a>
+                                    <a href="#" className="h5 whiteTxt">Organic Tomato</a>
                                     <div className="d-flex my-3 justify-content-center">
                                         <i className="fas fa-star text-primary" />
                                         <i className="fas fa-star text-primary" />
@@ -808,7 +821,7 @@ function Home(props) {
                                         <i className="fas fa-star text-primary" />
                                         <i className="fas fa-star" />
                                     </div>
-                                    <h4 className="mb-3">3.12 $</h4>
+                                    <h4 className="mb-3 whiteTxt">3.12 $</h4>
                                     <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
                                 </div>
                             </div>
@@ -817,7 +830,7 @@ function Home(props) {
                             <div className="text-center">
                                 <img src="img/fruite-item-3.jpg" className="img-fluid rounded" alt />
                                 <div className="py-4">
-                                    <a href="#" className="h5">Organic Tomato</a>
+                                    <a href="#" className="h5 whiteTxt">Organic Tomato</a>
                                     <div className="d-flex my-3 justify-content-center">
                                         <i className="fas fa-star text-primary" />
                                         <i className="fas fa-star text-primary" />
@@ -825,7 +838,7 @@ function Home(props) {
                                         <i className="fas fa-star text-primary" />
                                         <i className="fas fa-star" />
                                     </div>
-                                    <h4 className="mb-3">3.12 $</h4>
+                                    <h4 className="mb-3 whiteTxt">3.12 $</h4>
                                     <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
                                 </div>
                             </div>
@@ -834,7 +847,7 @@ function Home(props) {
                             <div className="text-center">
                                 <img src="img/fruite-item-4.jpg" className="img-fluid rounded" alt />
                                 <div className="py-2">
-                                    <a href="#" className="h5">Organic Tomato</a>
+                                    <a href="#" className="h5 whiteTxt">Organic Tomato</a>
                                     <div className="d-flex my-3 justify-content-center">
                                         <i className="fas fa-star text-primary" />
                                         <i className="fas fa-star text-primary" />
@@ -842,7 +855,7 @@ function Home(props) {
                                         <i className="fas fa-star text-primary" />
                                         <i className="fas fa-star" />
                                     </div>
-                                    <h4 className="mb-3">3.12 $</h4>
+                                    <h4 className="mb-3 whiteTxt">3.12 $</h4>
                                     <a href="#" className="btn border border-secondary rounded-pill px-3 text-primary"><i className="fa fa-shopping-bag me-2 text-primary" /> Add to cart</a>
                                 </div>
                             </div>
@@ -860,28 +873,28 @@ function Home(props) {
                                 <div className="counter bg-white rounded p-5">
                                     <i className="fa fa-users text-secondary" />
                                     <h4>satisfied customers</h4>
-                                    <h1>1963</h1>
+                                    <h1 className='whiteTxt'>1963</h1>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-6 col-xl-3">
                                 <div className="counter bg-white rounded p-5">
                                     <i className="fa fa-users text-secondary" />
                                     <h4>quality of service</h4>
-                                    <h1>99%</h1>
+                                    <h1 className='whiteTxt'>99%</h1>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-6 col-xl-3">
                                 <div className="counter bg-white rounded p-5">
                                     <i className="fa fa-users text-secondary" />
                                     <h4>quality certificates</h4>
-                                    <h1>33</h1>
+                                    <h1 className='whiteTxt'>33</h1>
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-6 col-xl-3">
                                 <div className="counter bg-white rounded p-5">
                                     <i className="fa fa-users text-secondary" />
                                     <h4>Available Products</h4>
-                                    <h1>789</h1>
+                                    <h1 className='whiteTxt'>789</h1>
                                 </div>
                             </div>
                         </div>

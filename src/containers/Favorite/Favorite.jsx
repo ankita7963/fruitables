@@ -23,7 +23,7 @@ function Favorite(props) {
 
     const fData = favData.fav?.fav?.map((v) => {
 
-        const product = producData?.product?.find((v1) => v1.id == v.id);
+        const product = producData?.product?.find((v1) => v1.id == v);
         console.log(product);
 
         console.log({ ...Product, qty: v.qty });

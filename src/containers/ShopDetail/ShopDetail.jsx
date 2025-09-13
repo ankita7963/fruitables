@@ -184,9 +184,9 @@ function ShopDetail(props) {
 
                                 {/* shop -> shopdetails -> product image -> details*/}
                                 <div className="col-lg-6">
-                                    <h4 className="fw-bold mb-3">{fData?.title}</h4>
+                                    <h4 className="fw-bold mb-3 whiteTxt">{fData?.title}</h4>
                                     <p className="mb-3">{fData?.description}</p>
-                                    <h5 className="fw-bold mb-3">${fData?.price} / kg</h5>
+                                    <h5 className="fw-bold mb-3 whiteTxt">${fData?.price} / kg</h5>
                                     <div className="d-flex mb-4">
                                         <i className="fa fa-star text-secondary" />
                                         <i className="fa fa-star text-secondary" />
@@ -207,7 +207,7 @@ function ShopDetail(props) {
                                             <button
                                                 onClick={() => handleDec()}
                                                 disabled={count === 1}
-                                                className="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                className="btn btn-sm btn-minus rounded-circle bg-light border countDeBox">
                                                 <i className="fa fa-minus" />
                                             </button>
                                         </div>
@@ -216,7 +216,7 @@ function ShopDetail(props) {
                                             value={count}
                                             onChange={(event) => handleCounter(parseInt(event.target.value))}
                                             type="text"
-                                            className="form-control form-control-sm text-center border-0"
+                                            className="form-control form-control-sm text-center border-0 boxColor"
                                             defaultValue={1}
                                         />
 
@@ -224,7 +224,7 @@ function ShopDetail(props) {
                                             <button
                                                 onClick={() => handleInc()}
                                                 disabled={count === 10}
-                                                className="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                className="btn btn-sm btn-plus rounded-circle bg-light border countInBox">
                                                 <i className="fa fa-plus" />
                                             </button>
                                         </div>
@@ -347,9 +347,10 @@ function ShopDetail(props) {
                                     </div>
                                 </div>
 
+
                                 {/* ------------------------------------------------------------------Leave a Reply Form---------------------------------------------------------------------------------- */}
                                 <form onSubmit={handleSubmit} >
-                                    <h4 className="mb-5 fw-bold">Leave a Reply</h4>
+                                    <h4 className="mb-5 fw-bold whiteTxt">Leave a Reply</h4>
                                     <div className="row g-4">
                                         <div className="col-lg-6">
                                             <div className="border-bottom rounded">
@@ -358,7 +359,7 @@ function ShopDetail(props) {
                                                     name="name"
                                                     type="text"
                                                     placeholder="Yur Name *"
-                                                    className="form-control border-0 me-4"
+                                                    className="form-control border-0 me-4 inputTxtBox"
                                                     style={{ cursor: 'pointer' }}
                                                     value={values.name}
                                                     onChange={handleChange}
@@ -376,7 +377,7 @@ function ShopDetail(props) {
                                                     name="email"
                                                     type="text"
                                                     placeholder="Your Email *"
-                                                    className="form-control border-0"
+                                                    className="form-control border-0 inputTxtBox"
                                                     style={{ cursor: 'pointer' }}
                                                     value={values.email}
                                                     onChange={handleChange}
@@ -394,7 +395,7 @@ function ShopDetail(props) {
                                                     name="review"
                                                     type="text"
                                                     placeholder="Your Review *"
-                                                    className="form-control border-0"
+                                                    className="form-control border-0 inputTxtBox"
                                                     spellCheck="false"
                                                     defaultValue={""}
                                                     cols={30} rows={8}
@@ -410,7 +411,7 @@ function ShopDetail(props) {
                                         </div>
                                         <div className="col-lg-12">
                                             <div className="d-flex justify-content-between py-3 mb-5">
-                                                <div className="d-flex align-items-center">
+                                                <div className="d-flex align-items-center inputTxtBox">
                                                     <p className="mb-0 me-3">Please rate:</p>
                                                     <Stack spacing={1}>
                                                         <Rating
@@ -468,13 +469,13 @@ function ShopDetail(props) {
 
                                     {/* Search productdata */}
                                     <div className="input-group w-100 mx-auto d-flex mb-4">
-                                        <input type="search" className="form-control p-3" placeholder="Search" aria-describedby="search-icon-1" />
+                                        <input type="search" className="form-control p-3 inputTxtBox" placeholder="Search" aria-describedby="search-icon-1" />
                                         <span id="search-icon-1" className="input-group-text p-3"><i className="fa fa-search" /></span>
                                     </div>
 
                                     {/* category head */}
                                     <div className="mb-4">
-                                        <h4>Categories</h4>
+                                        <h4 className='whiteTxt'>Categories</h4>
                                         <ul className="list-unstyled fruite-categorie">
                                             {cadata.category.map((v) => (
                                                 <li key={v.id}>
@@ -496,14 +497,16 @@ function ShopDetail(props) {
 
                                 </div>
 
+
+                                {/* Featured products */}
                                 <div className="col-lg-12">
-                                    <h4 className="mb-4">Featured products</h4>
+                                    <h4 className="mb-4 whiteTxt">Featured products</h4>
                                     <div className="d-flex align-items-center justify-content-start">
                                         <div className="rounded" style={{ width: 100, height: 100 }}>
                                             <img src="img/featur-1.jpg" className="img-fluid rounded" alt="Image" />
                                         </div>
                                         <div>
-                                            <h6 className="mb-2">Big Banana</h6>
+                                            <h6 className="mb-2 whiteTxt">Big Banana</h6>
                                             <div className="d-flex mb-2">
                                                 <i className="fa fa-star text-secondary" />
                                                 <i className="fa fa-star text-secondary" />
@@ -512,7 +515,7 @@ function ShopDetail(props) {
                                                 <i className="fa fa-star" />
                                             </div>
                                             <div className="d-flex mb-2">
-                                                <h5 className="fw-bold me-2">2.99 $</h5>
+                                                <h5 className="fw-bold me-2 whiteTxt">2.99 $</h5>
                                                 <h5 className="text-danger text-decoration-line-through">4.11 $</h5>
                                             </div>
                                         </div>
@@ -522,7 +525,7 @@ function ShopDetail(props) {
                                             <img src="img/featur-2.jpg" className="img-fluid rounded" alt />
                                         </div>
                                         <div>
-                                            <h6 className="mb-2">Big Banana</h6>
+                                            <h6 className="mb-2 whiteTxt">Big Banana</h6>
                                             <div className="d-flex mb-2">
                                                 <i className="fa fa-star text-secondary" />
                                                 <i className="fa fa-star text-secondary" />
@@ -531,7 +534,7 @@ function ShopDetail(props) {
                                                 <i className="fa fa-star" />
                                             </div>
                                             <div className="d-flex mb-2">
-                                                <h5 className="fw-bold me-2">2.99 $</h5>
+                                                <h5 className="fw-bold me-2 whiteTxt">2.99 $</h5>
                                                 <h5 className="text-danger text-decoration-line-through">4.11 $</h5>
                                             </div>
                                         </div>
@@ -541,7 +544,7 @@ function ShopDetail(props) {
                                             <img src="img/featur-3.jpg" className="img-fluid rounded" alt />
                                         </div>
                                         <div>
-                                            <h6 className="mb-2">Big Banana</h6>
+                                            <h6 className="mb-2 whiteTxt">Big Banana</h6>
                                             <div className="d-flex mb-2">
                                                 <i className="fa fa-star text-secondary" />
                                                 <i className="fa fa-star text-secondary" />
@@ -550,7 +553,7 @@ function ShopDetail(props) {
                                                 <i className="fa fa-star" />
                                             </div>
                                             <div className="d-flex mb-2">
-                                                <h5 className="fw-bold me-2">2.99 $</h5>
+                                                <h5 className="fw-bold me-2 whiteTxt">2.99 $</h5>
                                                 <h5 className="text-danger text-decoration-line-through">4.11 $</h5>
                                             </div>
                                         </div>
@@ -560,7 +563,7 @@ function ShopDetail(props) {
                                             <img src="img/vegetable-item-4.jpg" className="img-fluid rounded" alt />
                                         </div>
                                         <div>
-                                            <h6 className="mb-2">Big Banana</h6>
+                                            <h6 className="mb-2 whiteTxt">Big Banana</h6>
                                             <div className="d-flex mb-2">
                                                 <i className="fa fa-star text-secondary" />
                                                 <i className="fa fa-star text-secondary" />
@@ -569,7 +572,7 @@ function ShopDetail(props) {
                                                 <i className="fa fa-star" />
                                             </div>
                                             <div className="d-flex mb-2">
-                                                <h5 className="fw-bold me-2">2.99 $</h5>
+                                                <h5 className="fw-bold me-2 whiteTxt">2.99 $</h5>
                                                 <h5 className="text-danger text-decoration-line-through">4.11 $</h5>
                                             </div>
                                         </div>
@@ -579,7 +582,7 @@ function ShopDetail(props) {
                                             <img src="img/vegetable-item-5.jpg" className="img-fluid rounded" alt />
                                         </div>
                                         <div>
-                                            <h6 className="mb-2">Big Banana</h6>
+                                            <h6 className="mb-2 whiteTxt">Big Banana</h6>
                                             <div className="d-flex mb-2">
                                                 <i className="fa fa-star text-secondary" />
                                                 <i className="fa fa-star text-secondary" />
@@ -588,7 +591,7 @@ function ShopDetail(props) {
                                                 <i className="fa fa-star" />
                                             </div>
                                             <div className="d-flex mb-2">
-                                                <h5 className="fw-bold me-2">2.99 $</h5>
+                                                <h5 className="fw-bold me-2 whiteTxt">2.99 $</h5>
                                                 <h5 className="text-danger text-decoration-line-through">4.11 $</h5>
                                             </div>
                                         </div>
@@ -598,7 +601,7 @@ function ShopDetail(props) {
                                             <img src="img/vegetable-item-6.jpg" className="img-fluid rounded" alt />
                                         </div>
                                         <div>
-                                            <h6 className="mb-2">Big Banana</h6>
+                                            <h6 className="mb-2 whiteTxt">Big Banana</h6>
                                             <div className="d-flex mb-2">
                                                 <i className="fa fa-star text-secondary" />
                                                 <i className="fa fa-star text-secondary" />
@@ -607,7 +610,7 @@ function ShopDetail(props) {
                                                 <i className="fa fa-star" />
                                             </div>
                                             <div className="d-flex mb-2">
-                                                <h5 className="fw-bold me-2">2.99 $</h5>
+                                                <h5 className="fw-bold me-2 whiteTxt">2.99 $</h5>
                                                 <h5 className="text-danger text-decoration-line-through">4.11 $</h5>
                                             </div>
                                         </div>
@@ -629,7 +632,7 @@ function ShopDetail(props) {
                     </div>
 
                     {/* product -> shopdeatils -> Slider */}
-                    <h1 className="fw-bold mb-0">Related products</h1>
+                    <h1 className="fw-bold mb-0 whiteTxt">Related products</h1>
                     {/* <div className="vesitable">
                         <div className="owl-carousel vegetable-carousel justify-content-center">
                             <div className="border border-primary rounded position-relative vesitable-item">

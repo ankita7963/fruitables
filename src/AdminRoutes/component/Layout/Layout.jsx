@@ -25,6 +25,9 @@ import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantity
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import CountertopsIcon from '@mui/icons-material/Countertops';
 import { NavLink } from 'react-router-dom';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const drawerWidth = 240;
 
@@ -108,6 +111,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function Layout({ children }) {
     const theme = useTheme();
+    const themeMy =  React.useContext(ThemeContext);
+    console.log("themeMy",themeMy);
+    
+
     const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
@@ -149,6 +156,20 @@ export default function Layout({ children }) {
                     <Typography variant="h6" noWrap component="div">
                         Mini variant drawer
                     </Typography>
+
+
+
+                    <IconButton
+                        style={{ marginLeft: 'auto' }}
+                        onClick={() => themeMy.toogleTheme(themeMy.theme)}
+                    >
+                        {
+                            theme.palette.mode === 'light' ?
+                                <DarkModeIcon /> : <LightModeIcon />
+                        }
+                    </IconButton>
+
+                    
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>

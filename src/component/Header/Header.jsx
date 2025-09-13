@@ -13,7 +13,7 @@ function Header(props) {
     const handleTheme = () => {
         theme.toogleTheme(theme.theme)
     }
-    
+
 
 
     return (
@@ -47,7 +47,7 @@ function Header(props) {
                         </button>
                         <div className="collapse navbar-collapse bg-white" id="navbarCollapse">
                             <div className="navbar-nav mx-auto">
-                                <NavLink to={"/"} className="nav-item nav-link active">Home</NavLink>
+                                <NavLink to={"/"} className="nav-item nav-link">Home</NavLink>
                                 <NavLink to={"/Shop"} className="nav-item nav-link">Shop</NavLink>
                                 {/* <NavLink to={"/ShopDetail"} className="nav-item nav-link">Shop Detail</NavLink> */}
                                 {/* <div className="nav-item dropdown">
@@ -64,14 +64,7 @@ function Header(props) {
 
                             <div className="d-flex m-3 me-0">
 
-                                {/* theme Icon */}
-                                <a 
-                                href="#" 
-                                className="my-auto me-4"
-                                onClick={() => handleTheme()}
-                                >
-                                    <i className="fas fa-solid fa-moon fa-2x"></i>
-                                </a>
+                                
                                 {/* Search Button */}
                                 <button
                                     className="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
@@ -80,6 +73,20 @@ function Header(props) {
                                 >
                                     <i className="fas fa-search text-primary" />
                                 </button>
+
+                                {/* theme Icon */}
+                                <a
+                                    href="#"
+                                    className="my-auto me-4"
+                                    onClick={() => handleTheme()}
+                                >
+                                    {
+                                        theme.theme === 'light' ?
+                                            <i className="fas fa-solid fa-moon fa-2x"></i> :
+                                            <i class="fas fa-solid fa-sun fa-2x"></i>
+
+                                    }
+                                </a>
 
                                 {/* Cart Button */}
                                 <NavLink

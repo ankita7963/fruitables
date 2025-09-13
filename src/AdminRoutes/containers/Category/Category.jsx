@@ -17,6 +17,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCategory, deleteCategory, getAllCategory, updateCategory } from '../../../redux/Slice/category.slice';
 import TextInput from '../../component/TextInput/TextInput';
 import ButtonInput from '../../component/ButtonInput/ButtonInput';
+import Heading from '../../component/Heading/Heading';
+import CustomTable from '../../component/CustomTable/CustomTable';
+import { Margin } from '@mui/icons-material';
 
 
 // -------- Component Setup --------
@@ -117,7 +120,7 @@ function Category(props) {
             ),
         },
     ];
-    const paginationModel = { page: 0, pageSize: 5 };
+
 
 
     // -------- Update Category Function --------
@@ -198,7 +201,17 @@ function Category(props) {
     // -------- Final Return: UI Layout --------
     return (
         <div>
-            <h1>Category {counter.count} </h1>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                {/* <h1>Category {counter.count} </h1> */}
+                <Heading title={"Category"} subtitle={"hjghjgjhjhjhjghnnbkjjghj"} />
+
+                <ButtonInput
+                    
+                    onClick={handleClickOpen}
+                    title="Add Category"
+
+                />
+            </Box>
 
             <>
                 {/* -------- <h4>Dialog Box kevai chhe</h4> -------- */}
@@ -213,22 +226,13 @@ function Category(props) {
                 </Box> */}
 
 
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <ButtonInput
-                        onClick={handleClickOpen}
-                        title="Add Category"
-                    />
-                </Box>
+
 
 
                 {/* -------- table data list formate -------- */}
-                <DataGrid
+                <CustomTable
                     rows={category.category}
                     columns={columns}
-                    initialState={{ pagination: { paginationModel } }}
-                    pageSizeOptions={[5, 10]}
-                    checkboxSelection
-                    sx={{ border: 0 }}
                 />
 
                 <Dialog open={open} onClose={handleClose}>

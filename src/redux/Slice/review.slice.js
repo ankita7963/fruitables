@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BASE_URL } from "../../constant/url";
 
 const initialState = {
     isLoading: false,
@@ -11,7 +12,7 @@ const initialState = {
 export const getAllReviewData = createAsyncThunk(
     "review/getAllReviewData",
     async () => {
-        const response = await fetch("http://localhost:3000/review");
+        const response = await fetch(`${BASE_URL}/review`);
         const data = await response.json();
         return data;
     }
@@ -22,7 +23,7 @@ export const getAllReviewData = createAsyncThunk(
 export const addReviewData = createAsyncThunk(
     "review/addReviewData",
     async (data) => {
-        const response = await fetch("http://localhost:3000/review", {
+        const response = await fetch(`${BASE_URL}/review`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -38,7 +39,7 @@ export const addReviewData = createAsyncThunk(
 export const updateReview = createAsyncThunk(
     "review/updateReview",
     async (data) => {
-        const response = await fetch(`http://localhost:3000/review/` + data.id, {
+        const response = await fetch(`${BASE_URL}/review/` + data.id, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

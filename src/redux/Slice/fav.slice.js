@@ -48,7 +48,7 @@ export const addToFav = createAsyncThunk(
 
                 return response.data;
             } else {
-                const index = userFav?.fav?.findIndex(v => v.id === data.fav.id);
+                const index = userFav?.fav?.findIndex(v => v === data.fav);
                 console.log(index);
 
                 if (index === undefined || index === -1) {
@@ -79,7 +79,7 @@ export const removeFav = createAsyncThunk(
 
         let userFav = response.data[0];
 
-        userFav.fav = userFav.fav.filter((v) => v.id !== id);
+        userFav.fav = userFav.fav.filter((v) => v != id);
 
         const response1 = await axios.put(`${BASE_URL}/fav/${userFav.id}`, userFav);
         console.log(response1);
