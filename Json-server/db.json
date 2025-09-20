@@ -250,5 +250,15 @@
         "19e4"
       ]
     }
+  ],
+  "coupon": [
+    {
+      "id": "4dc4",
+      "coupon": "cdscz",
+      "percentage": "1011",
+      "expiry": "2025-09-04",
+      "stock": "5",
+      "coupon_img": "lemon.jpg"
+    }
   ]
 }

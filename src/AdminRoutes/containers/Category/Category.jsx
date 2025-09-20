@@ -44,7 +44,7 @@ function Category(props) {
 
     // -------- Yup Validation Schema --------
     let categorySchema = object({
-        cat_ima: mixed().required("Please Select Category Image"),
+        cat_img: mixed().required("Please Select Category Image"),
         name: string().required("Please Enter Category Name"),
         description: string().required("Please Enter Category Description")
     });
@@ -53,7 +53,7 @@ function Category(props) {
     // -------- Formik Validation Setup --------
     const formik = useFormik({
         initialValues: {
-            // cat_ima: null,
+            // cat_img: null,
             name: '',
             description: '',
         },
@@ -63,10 +63,10 @@ function Category(props) {
 
             // Add or Update Category
             if (update === null) {
-                dispatch(addCategory(values));
+                // dispatch(addCategory(values));
                 // handleCategory(values);
             } else {
-                dispatch(updateCategory({ ...values, id: update }));
+                // dispatch(updateCategory({ ...values, id: update }));
                 // updateCategorydata(values);
             }
             resetForm(); // Clear fields
@@ -241,7 +241,7 @@ function Category(props) {
 
                         <Formik
                             initialValues={{
-                                // cat_ima: null,
+                                // cat_img: null,
                                 name: '',
                                 description: '',
                             }}

@@ -13,8 +13,8 @@ function Heading({ title, subtitle }) {
             </Typography>
             <Typography
                 variant='p'
-                sx={{color: theme.palette.primary.main}}
-                // sx={{color: color.secondary[400]}}
+                // sx={{color: theme.palette.primary.main}}
+                sx={{color: color.secondary[400]}}
             >
                 {subtitle}
             </Typography>

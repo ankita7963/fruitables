@@ -6,7 +6,10 @@ import React from 'react';
 function FileUploadd({ label, id, ...props }) {
 
     const [field, meta, helpers] = useField(props);
-    console.log(props, field, meta, helpers);
+    // console.log(props, field, meta, helpers);
+
+    // console.log("field?.value", field?.value);
+
 
     return (
         <div>
@@ -21,11 +24,13 @@ function FileUploadd({ label, id, ...props }) {
             <img
                 style={{ width: '300px', height: '300px', objectFit: 'contain' }}
                 src={
-                    typeof field.value === 'string' ?
-                    '../public/img/categoryimg/' + field.value :
-                    field.value ? URL.createObjectURL(field.value) : ''
-                }
+                    typeof field?.value?.url === 'string' ?
+                        field?.value?.url : field?.value ? URL.createObjectURL(field?.value) : ''
 
+                    // typeof field?.value === 'string' ?
+                    //     '../public/img/categoryimg/' + field.value : field?.value ? URL.createObjectURL(field?.value) : ''
+
+                }
             />
             <FormHelperText style={{ color: 'red', fontSize: '12px' }}>
                 {meta.touched && meta.error ? meta.error : null}

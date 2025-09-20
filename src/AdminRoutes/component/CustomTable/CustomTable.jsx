@@ -23,6 +23,7 @@ function CustomTable({ rows, columns }) {
                 }
             }}
             showToolbar
+            getRowId={(row) => row._id}
         />
     );
 }

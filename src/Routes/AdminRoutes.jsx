@@ -11,6 +11,7 @@ import { createTheme, ThemeProvider } from '@mui/material';
 import { ThemeContext } from '../context/ThemeContext';
 import { themeSetting } from '../AdminRoutes/theme';
 import Dashboard from '../AdminRoutes/containers/Dashboard/Dashboard';
+import Coupon from '../AdminRoutes/containers/Coupon/Coupon';
 
 
 function AdminRoutes(props) {
@@ -19,7 +20,7 @@ function AdminRoutes(props) {
     const muiTheme = createTheme(themeSetting(theme.theme));
 
     return (
-        <ThemeProvider theme={muiTheme}> 
+        <ThemeProvider theme={muiTheme}>
             <Layout>
 
                 <Routes>
@@ -29,6 +30,7 @@ function AdminRoutes(props) {
                     <Route path="/Product" element={<Product />} />
                     <Route path="/review" element={<Review />} />
                     <Route path="/Counter" element={<Counter />} />
+                    <Route path="/Coupon" element={<Coupon />} />
 
                     {/* -------- path name mistake arror -------- */}
                     <Route path="*" element={<F404 />} />

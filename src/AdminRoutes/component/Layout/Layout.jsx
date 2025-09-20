@@ -111,9 +111,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function Layout({ children }) {
     const theme = useTheme();
-    const themeMy =  React.useContext(ThemeContext);
-    console.log("themeMy",themeMy);
-    
+    const themeMy = React.useContext(ThemeContext);
+    console.log("themeMy", themeMy);
+
 
     const [open, setOpen] = React.useState(false);
 
@@ -130,7 +130,9 @@ export default function Layout({ children }) {
         { Label: 'SubCategory', icon: <FormatListBulletedIcon />, to: '/admin/SubCategory' },
         { Label: 'Product', icon: <ProductionQuantityLimitsIcon />, to: '/admin/Product' },
         { Label: 'Review', icon: <Reviews />, to: '/admin/Review' },
-        { Label: 'counter', icon: <CountertopsIcon />, to: '/admin/Counter' }
+        { Label: 'Counter', icon: <CountertopsIcon />, to: '/admin/Counter' },
+        { Label: 'Coupon', icon: <CountertopsIcon />, to: '/admin/Coupon' }
+
     ];
 
     return (
@@ -169,7 +171,7 @@ export default function Layout({ children }) {
                         }
                     </IconButton>
 
-                    
+
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>
