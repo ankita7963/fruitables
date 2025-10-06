@@ -17,7 +17,7 @@ import { ThemeContext } from '../context/ThemeContext';
 import Auth from '../containers/Auth/Auth.jsx';
 
 function UserRoutes(props) {
-    const theme = useContext(ThemeContext);
+    const theme = useContext(ThemeContext);  
     console.log(theme);
 
     return (
