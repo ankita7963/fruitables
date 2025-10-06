@@ -4,16 +4,17 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import { date, mixed, number, object, string } from 'yup';
+import { boolean, date, mixed, number, object, string } from 'yup';
 import { Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import TextInput from '../../component/TextInput/TextInput';
 import CustomTable from '../../component/CustomTable/CustomTable';
-import { useAddCouponMutation, useDeleteCouponMutation, useGetAllCouponQuery, useUpdateCouponMutation } from '../../../redux/api/couponApi';
-import { DialogTitle, IconButton } from '@mui/material';
+import { useAddCouponMutation, useDeleteCouponMutation, useGetAllCouponQuery, useUpdateCouponMutation, useUpdateStatusMutation } from '../../../redux/api/couponApi';
+import { DialogTitle, FormControlLabel, FormGroup, IconButton, Switch } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FileUploadd from '../../component/FileUpload/FileUploadd';
+import Switchh from '../../component/Switch/Switchh';
 
 
 
@@ -27,6 +28,7 @@ function Coupon(props) {
     const [addCoupon] = useAddCouponMutation();
     const [updateCoupon] = useUpdateCouponMutation();
     const [deleteCoupon] = useDeleteCouponMutation();
+    const [updateStatus] = useUpdateStatusMutation();
 
 
     // Open & close dialog
@@ -42,7 +44,11 @@ function Coupon(props) {
         handleClickOpen();
         setUpdate(data)
     }
-    
+
+    const handleStatus = (data) => {
+        updateStatus({ _id: data._id, active: !data.active })
+    }
+
     let couponSchema = object({
         coupon: string().required(),
         percentage: number().required(),
@@ -76,7 +82,10 @@ function Coupon(props) {
                 } else {
                     return false;
                 }
-            })
+            }),
+        //   active:boolean().oneOf([true], "Must be Active")  
+        active: boolean()
+
     });
 
 
@@ -94,6 +103,17 @@ function Coupon(props) {
                     // src={`../public/img/categoryimg/${params.row.coupon_image}`}
                     style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                     src={`${params?.row?.coupon_image?.url}`}
+                />
+            )
+        },
+        {
+            field: 'active',
+            headerName: 'Status',
+            width: 150,
+            renderCell: (params) => (
+                <Switch
+                    checked={params?.row?.active}
+                    onChange={() => handleStatus(params?.row)}
                 />
             )
         },
@@ -151,6 +171,7 @@ function Coupon(props) {
                                     expiry: '',
                                     stock: '',
                                     coupon_image: '',
+                                    active: ''
                                 }
                         }
                         validationSchema={couponSchema}
@@ -188,7 +209,7 @@ function Coupon(props) {
                                 // }
                                 // updateCoupon({ upDate });
 
-                                updateCoupon({_id: values._id, body : formData});
+                                updateCoupon({ _id: values._id, body: formData });
 
                             } else {
 
@@ -227,6 +248,12 @@ function Coupon(props) {
                                 id="coupon_image"
                                 name="coupon_image"
                                 label="Image"
+                            />
+
+                            <Switchh
+                                id="active"
+                                name="active"
+                                label="Status"
                             />
 
                             <DialogActions>

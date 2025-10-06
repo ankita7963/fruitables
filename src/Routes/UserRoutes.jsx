@@ -14,6 +14,7 @@ import Testimonial from '../containers/Testimonial/Testimonial';
 import Header from '../component/Header/Header';
 import Favorite from '../containers/Favorite/Favorite';
 import { ThemeContext } from '../context/ThemeContext';
+import Auth from '../containers/Auth/Auth.jsx';
 
 function UserRoutes(props) {
     const theme = useContext(ThemeContext);
@@ -26,6 +27,8 @@ function UserRoutes(props) {
 
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/Auth" element={<Auth />} />
+
 
                 <Route element={<PrivateRoutes />}>
                     <Route path="/shop" element={<Shop />} />

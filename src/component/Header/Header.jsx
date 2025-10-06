@@ -64,7 +64,7 @@ function Header(props) {
 
                             <div className="d-flex m-3 me-0">
 
-                                
+
                                 {/* Search Button */}
                                 <button
                                     className="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
@@ -104,9 +104,12 @@ function Header(props) {
                                 </NavLink>
 
                                 {/* User Icon */}
-                                <a href="#" className="my-auto me-4">
+                                <NavLink
+                                    to={"/Auth"}
+                                    className="my-auto me-4"
+                                >
                                     <i className="fas fa-user fa-2x" />
-                                </a>
+                                </NavLink>
 
                                 {/* Heart Icon */}
                                 <NavLink

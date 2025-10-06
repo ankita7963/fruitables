@@ -20,7 +20,7 @@ function Switchh({ label, id, ...props }) {
                         <Switch
                             {...props}  //name
                             {...field}  //onChange,onBlur,value
-                            defaultChecked
+                            checked={field.value || false}
                         />
                     }
                     label={label}

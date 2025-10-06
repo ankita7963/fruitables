@@ -5,13 +5,13 @@ export const couponApi = createApi({
     reducerPath: 'couponApi',
     baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
 
-    endpoints: (builder) => ({
-        getAllCoupon: builder.query({
+    endpoints: (build) => ({
+        getAllCoupon: build.query({
             query: () => `/coupon/list-coupon`,
             providesTags: ['coupon']
         }),
 
-        addCoupon: builder.mutation({
+        addCoupon: build.mutation({
             query: (data) => ({
                 url: `/coupon/add-coupon`,
                 method: 'POST',
@@ -50,18 +50,45 @@ export const couponApi = createApi({
             }
         }),
 
-
-        updateCoupon: builder.mutation({
+        updateCoupon: build.mutation({
             query: ({ _id, body }) => ({
                 url: `/coupon/update-coupon/${_id}`,
                 method: 'PATCH',
                 body: body
             }),
             async onQueryStarted({ id, ...data }, { dispatch, queryFulfilled }) {
-                const patchResult = dispatch(
-                    couponApi.util.updateQueryData('getAllCoupon', undefined, (draft) => {
+                // const patchResult = dispatch(
+                //     couponApi.util.updateQueryData('getAllCoupon', undefined, (draft) => {
+                //         const index = draft.findIndex(v => v.id === id);
+                //         draft[index] = { ...draft[index], ...data }
+                //     }),
+                // )
+                // try {
+                //     await queryFulfilled
+                // } catch {
+                //     patchResult.undo()
+                // }
+                const temUrlimg = body.get("coupon_image") ? { url: URL.createObjectURL(body.get("coupon_image")) } : null;
+
+                const patchResult = dispatch(couponApi.util.updateQueryData
+                    ("getAllCoupon", undefined, (draft) => {
                         const index = draft.findIndex(v => v.id === id);
-                        draft[index] = { ...draft[index], ...data }
+
+                        if (index !== -1) {
+                            const updateData = {
+                                coupon: data.get("coupon"),
+                                percentage: data.get("percentage"),
+                                expiry: data.get("expiry"),
+                                stock: data.get("stock"),
+                                active: data.get("active") === "true" ? ture : false
+                            };
+                            if (temUrlimg) {
+                                updateData.coupon_image = temUrlimg;
+                            }
+                            console.log("updateData", updateData, temUrlimg);
+
+                            draft.data[index] = { ...draft.data[index], ...updateData }
+                        }
                     }),
                 )
                 try {
@@ -72,7 +99,7 @@ export const couponApi = createApi({
             }
         }),
 
-        deleteCoupon: builder.mutation({
+        deleteCoupon: build.mutation({
             query: (id) => ({
                 url: `/coupon/delete-coupon/${id}`,
                 method: 'DELETE'
@@ -92,6 +119,32 @@ export const couponApi = createApi({
                 }
             }
         }),
+
+        updateStatus: build.mutation({
+            query: ({ _id, active }) => ({
+                url: `/coupon/update-coupon/${_id}`,
+                method: 'PATCH',
+                body: { active }
+            }),
+            async onQueryStarted({ id, active }, { dispatch, queryFulfilled }) {
+
+
+                const patchResult = dispatch(couponApi.util.updateQueryData
+                    ("getAllCoupon", undefined, (draft) => {
+                        const index = draft?.data?.findIndex(v => v.id === id);
+
+                        if (index !== -1) {
+                            draft.data[index].active = active
+                        }
+                    }),
+                )
+                try {
+                    await queryFulfilled
+                } catch {
+                    patchResult.undo()
+                }
+            }
+        })
     })
 
 });
@@ -101,4 +154,5 @@ export const {
     useAddCouponMutation,
     useUpdateCouponMutation,
     useDeleteCouponMutation,
+    useUpdateStatusMutation
 } = couponApi

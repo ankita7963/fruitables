@@ -67,7 +67,8 @@ const createReduxStore = () => {
                     ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
                 },
             }).concat(
-                couponApi.middleware
+                couponApi.middleware,
+                categoryApi.middleware
             ),
     })
 
