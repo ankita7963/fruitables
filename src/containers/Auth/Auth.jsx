@@ -31,6 +31,13 @@ function Auth(props) {
             email: string().required().email(),
             password: string().required(),
         }
+    } else if (type === "ForgotPassword") {
+        initialValues = {
+            email: '',
+        }
+        formikuse = {
+            email: string().required().email(),
+        }
     }
 
     const formik = useFormik({
@@ -44,8 +51,6 @@ function Auth(props) {
     console.log(initialValues);
     console.log(formikuse);
 
-
-
     const { handleSubmit, handleChange, handleBlur, values, touched, errors } = formik;
     console.log(errors, touched);
 
@@ -57,10 +62,13 @@ function Auth(props) {
         <div>
             {/* Single Page Header start */}
             <div className="container-fluid page-header py-5">
-                <h1 className="text-center text-white display-6">{type === 'Login' ? 'Login' : 'Registration'}</h1>
+                <h1 className="text-center text-white display-6">
+                    {/* {type === 'Login' ? 'Login' : 'Registration'} */}
+                    {type === 'Login' ? 'Login' : type === 'Registration' ? 'Registration' : 'Forgot Password'}
+                </h1>
                 <ol className="breadcrumb justify-content-center mb-0">
                     <li className="breadcrumb-item"><a href="#">Home</a></li>
-                    <li className="breadcrumb-item active text-white">{type === 'Login' ? 'Login' : 'Registration'}</li>
+                    <li className="breadcrumb-item active text-white"> {type} </li>
                 </ol>
             </div>
 
@@ -71,7 +79,10 @@ function Auth(props) {
                         <div className="row g-4">
                             <div className="col-12">
                                 <div className="text-center mx-auto" style={{ maxWidth: 700 }}>
-                                    <h1 className="text-primary">{type === 'Login' ? 'Login' : 'Registration'}</h1>
+                                    <h1 className="text-primary">
+                                        {type === 'Login' ? 'Login' : type === 'Registration' ? 'Register' : 'Forgot Password'}
+
+                                    </h1>
                                 </div>
                             </div>
 
@@ -108,18 +119,26 @@ function Auth(props) {
                                     {
                                         touched.email && errors.email ? <span className='error'>{errors.email}</span> : null
                                     }
-                                    <input
-                                        type="password"
-                                        name='password'
-                                        className="w-100 form-control border-0 py-3 mb-4"
-                                        placeholder="Enter Your Password"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.password}
-                                    />
-                                    {
-                                        touched.password && errors.password ? <span className='error'>{errors.password}</span> : null
+
+                                    {type !== 'ForgotPassword' ?
+                                        <>
+                                            <input
+                                                type="password"
+                                                name='password'
+                                                className="w-100 form-control border-0 py-3 mb-4"
+                                                placeholder="Enter Your Password"
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.password}
+                                            />
+                                            {
+                                                touched.password && errors.password ? <span className='error'>{errors.password}</span> : null
+                                            }
+                                        </>
+                                        :
+                                        null
                                     }
+
                                     <button
                                         className="w-100 btn form-control border-secondary py-3 bg-white text-primary "
                                         type="submit"
@@ -128,7 +147,7 @@ function Auth(props) {
                                     </button>
                                 </form>
 
-                                {type === 'Login' ?
+                                {/* {type === 'Login' ?
                                     (
                                         <>
                                             <span>Create Ragiter Account</span>
@@ -142,7 +161,34 @@ function Auth(props) {
                                             <a href="#" onClick={() => setType('Login')}> Login</a>
                                         </>
                                     )
-                                }
+                                } */}
+
+                                {type === 'Login' && (
+                                    <>
+                                        <span>Don't have an account?</span>
+                                        <a href="#" onClick={() => setType('Registration')}> Register </a>
+
+                                        <br />
+
+                                        <span>Forgot your password?</span>
+                                        <a href="#" onClick={() => setType('ForgotPassword')}> Reset </a>
+
+                                    </>
+                                )}
+
+                                {type === 'Registration' && (
+                                    <>
+                                        <span>Already have an account?</span>
+                                        <a href="#" onClick={() => setType('Login')}> Login </a>
+                                    </>
+                                )}
+
+                                {type === 'ForgotPassword' && (
+                                    <>
+                                        <span>Back to</span>
+                                        <a href="#" onClick={() => setType('Login')}> Login </a>
+                                    </>
+                                )}
 
                             </div>
                         </div>
